@@ -3,7 +3,7 @@
 rm -rf .repo/local_manifests; \
 rm -rf {device,vendor,kernel,hardware}/xiaomi; \
 rm -rf packages/apps/ViPER4AndroidFX && \
-repo init --depth=1 --no-repo-verify -u https://github.com/AxionAOSP/android -b lineage-22.2 --git-lfs -g default,-mips,-darwin,-notdefault && \
+repo init --depth=1 --no-repo-verify -u https://github.com/Mi-Apollo/axion_android -b lineage-22.2 --git-lfs -g default,-mips,-darwin,-notdefault && \
 /opt/crave/resync.sh && \
 git clone https://github.com/MurtazaKolachi/android_device_xiaomi_apollo -b axion device/xiaomi/apollo && \
 git clone https://github.com/MurtazaKolachi/android_vendor_xiaomi_apollo -b main vendor/xiaomi/apollo && \
@@ -21,5 +21,5 @@ rm -rf out/target/product/vanilla && rm -rf out/target/product/gapps; \
 cd out/target/product && mv apollo vanilla && cd ../../..; \
 # Gapps Build
 . build/envsetup.sh; \
-gk -s && axion apollo gms core user && make installclean && ax -br; \
+gk -s && axion apollo gms pico user && make installclean && ax -br; \
 cd out/target/product && mv apollo gapps && cd ../../..; \
