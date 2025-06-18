@@ -7,7 +7,7 @@ repo init --depth=1 --no-repo-verify -u https://github.com/MurtazaKolachi/manife
 /opt/crave/resync.sh && \
 git clone https://github.com/MurtazaKolachi/android_device_xiaomi_apollo -b evo device/xiaomi/apollo && \
 git clone https://github.com/MurtazaKolachi/android_vendor_xiaomi_apollo -b main vendor/xiaomi/apollo && \
-git clone https://github.com/MurtazaKolachi/android_kernel_xiaomi_apollo -b main kernel/xiaomi/apollo && \
+git clone https://gitlab.com/rik-x777/kernel_xiaomi_sm8250 -b n0 kernel/xiaomi/apollo && \
 git clone https://github.com/Evolution-X-Devices/hardware_xiaomi -b bka hardware/xiaomi && \
 git clone https://github.com/AxionAOSP/android_packages_apps_ViPER4AndroidFX -b v4a packages/apps/ViPER4AndroidFX && \
 export BUILD_USERNAME=Murtaza; \
