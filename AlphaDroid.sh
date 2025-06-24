@@ -15,11 +15,4 @@ export BUILD_HOSTNAME=crave; \
 export TZ=Asia/Karachi; \
 # Vanilla Build
 . build/envsetup.sh && \
-breakfast apollo user && make installclean && mka bacon; \
-rm -rf out/target/product/vanilla && rm -rf out/target/product/gapps; \
-cd out/target/product && mv apollo vanilla && cd ../../..; \
-# Gapps Build
-cd device/xiaomi/apollo && rm alpha_apollo.mk && mv gapps.txt alpha_apollo.mk && cd ../../..; \
-. build/envsetup.sh; \
-breakfast apollo user && make installclean && mka bacon; \
-cd out/target/product && mv apollo gapps && cd ../../..; \
+breakfast apollo user && make installclean && mka bacon
