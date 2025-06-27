@@ -7,7 +7,7 @@ repo init --depth=1 --no-repo-verify -u https://github.com/AxionAOSP/android -b 
 git clone https://github.com/MurtazaKolachi/android_device_xiaomi_apollo -b test device/xiaomi/apollo && \
 git clone https://github.com/MurtazaKolachi/android_vendor_xiaomi_apollo -b test vendor/xiaomi/apollo && \
 git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b main kernel/xiaomi/apollo && \
-git clone https://github.com/MurtazaKolachi/hardware_xiaomi -b fifteen hardware/xiaomi && \
+git clone https://github.com/LineageOS/android_hardware_xiaomi/ -b lineage-23.0 hardware/xiaomi && \
 rm -rf hardware/dolby && \
 git clone https://github.com/Matrixx-Devices/hardware_dolby -b sony-1.3 hardware/dolby && \
 rm -rf packages/apps/ViPER4AndroidFX && \
