@@ -20,4 +20,10 @@ export BUILD_HOSTNAME=crave; \
 export TZ=Asia/Karachi; \
 # Vanilla Build
 . build/envsetup.sh && \
-gk -s && axion apollo va user && make installclean && ax -br
+gk -s && axion apollo va user && make installclean && ax -br; \
+rm -rf out/target/product/vanilla && rm -rf out/target/product/gapps; \
+cd out/target/product && mv apollo vanilla && cd ../../..; \
+# Gapps Build
+. build/envsetup.sh; \
+gk -s && axion apollo gms pico user && make installclean && ax -br; \
+cd out/target/product && mv apollo gapps && cd ../../..; \
