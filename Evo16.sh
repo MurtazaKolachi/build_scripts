@@ -15,11 +15,4 @@ export BUILD_HOSTNAME=crave; \
 export TZ=Asia/Karachi; \
 # Vanilla Build
 . build/envsetup.sh && \
-lunch lineage_apollo-bp1a-user && make installclean && m evolution; \
-rm -rf out/target/product/vanilla && rm -rf out/target/product/gapps; \
-cd out/target/product && mv apollo vanilla && cd ../../..; \
-# Gapps Build
-cd device/xiaomi/apollo && rm lineage_apollo.mk && mv gapps.txt lineage_apollo.mk && cd ../../..; \
-. build/envsetup.sh; \
-lunch lineage_apollo-bp1a-user && make installclean && m evolution; \
-cd out/target/product && mv apollo gapps && cd ../../..; \
+lunch lineage_apollo-bp1a-user && make installclean && m evolution
