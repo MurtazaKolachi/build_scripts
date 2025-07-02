@@ -5,7 +5,7 @@ rm -rf {device,vendor,kernel,hardware}/xiaomi; \
 repo init --depth=1 --no-repo-verify -u https://github.com/yaap/manifest.git -b sixteen --git-lfs -g default,-mips,-darwin,-notdefault && \
 /opt/crave/resync.sh && \
 git clone https://github.com/MurtazaKolachi/android_device_xiaomi_apollo -b yaap device/xiaomi/apollo && \
-git clone https://github.com/MurtazaKolachi/android_vendor_xiaomi_apollo -b main vendor/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/android_vendor_xiaomi_apollo -b evo vendor/xiaomi/apollo && \
 git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b main kernel/xiaomi/apollo && \
 git clone https://github.com/yaap/hardware_xiaomi -b sixteen hardware/xiaomi && \
 rm -rf packages/apps/ViPER4AndroidFX && \
