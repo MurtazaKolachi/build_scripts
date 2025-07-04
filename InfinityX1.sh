@@ -21,7 +21,7 @@ git clone https://github.com/MurtazaKolachi/android_vendor_xiaomi_apollo -b new 
 
 # Kernel Tree
 rm -rf kernel/xiaomi
-git clone https://github.com/MurtazaKolachi/android_kernel_xiaomi_apollo -b main kernel/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b main kernel/xiaomi/apollo && \
 
 # Hardware Tree
 rm -rf hardware/xiaomi
