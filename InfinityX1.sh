@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # Remove Manifests
-rm -rf .repo/local_manifests; \
+rm -rf .repo/local_manifests
 
 # ROM Repo
 repo init --depth=1 --no-repo-verify -u https://github.com/ProjectInfinity-X/manifest -b 15 --git-lfs -g default,-mips,-darwin,-notdefault && \
@@ -13,7 +13,7 @@ repo init --depth=1 --no-repo-verify -u https://github.com/ProjectInfinity-X/man
 
 # Device Tree
 rm -rf device/xiaomi
-git clone https://github.com/MurtazaKolachi/android_device_xiaomi_apollo -b infinity device/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/android_device_xiaomi_apollo -b infinit device/xiaomi/apollo && \
 
 # Vendor Tree
 rm -rf vendor/xiaomi
