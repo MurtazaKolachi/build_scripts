@@ -1,34 +1,42 @@
 #! /bin/bash
 
-# Remove Directories
+# Remove Manifests
 rm -rf .repo/local_manifests
-rm -rf device/xiaomi
-rm -rf vendor/xiaomi
-rm -rf kernel/xiaomi
-rm -rf hardware/xiaomi
-rm -rf hardware/dolby
-rm -rf packages/apps/ViPER4AndroidFX
-rm -rf packages/resources/devicesettings
 
 # ROM Repo
 repo init --depth=1 --no-repo-verify -u https://github.com/ProjectInfinity-X/manifest -b 15 --git-lfs -g default,-mips,-darwin,-notdefault && \
 
-# Sync
+# Sync Rom
 /opt/crave/resync.sh && \
 
 # Trees
+
+# Device Tree
+rm -rf device/xiaomi
 git clone https://github.com/MurtazaKolachi/android_device_xiaomi_apollo -b infinit device/xiaomi/apollo && \
+
+# Vendor Tree
+rm -rf vendor/xiaomi
 git clone https://github.com/MurtazaKolachi/android_vendor_xiaomi_apollo -b new vendor/xiaomi/apollo && \
+
+# Kernel Tree
+rm -rf kernel/xiaomi
 git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b main kernel/xiaomi/apollo && \
-git clone https://github.com/MurtazaKolachi/hardware_xiaomi -b fifteen hardware/xiaomi && \
+
+# Hardware Tree
+rm -rf hardware/xiaomi
+git clone https://github.com/LineageOS/android_hardware_xiaomi -b lineage-23.0 hardware/xiaomi && \
 
 # Dolby
+rm -rf hardware/dolby
 git clone https://github.com/MurtazaKolachi/hardware_dolby -b sony-1.3 hardware/dolby && \
 
 # ViPER
+rm -rf packages/apps/ViPER4AndroidFX
 git clone https://github.com/AxionAOSP/android_packages_apps_ViPER4AndroidFX -b v4a packages/apps/ViPER4AndroidFX && \
 
 # Other
+rm -rf packages/resources/devicesettings
 git clone https://github.com/PocoF3Releases/packages_resources_devicesettings -b aosp-15 packages/resources/devicesettings && \
 
 # --- Setup Build Environment ---
