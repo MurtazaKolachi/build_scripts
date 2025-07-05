@@ -1,34 +1,40 @@
 #! /bin/bash
 
-# Remove Directories
-rm -rf .repo/local_manifests
-rm -rf device/xiaomi
-rm -rf vendor/xiaomi
-rm -rf kernel/xiaomi
-rm -rf hardware/xiaomi
-rm -rf hardware/dolby
-rm -rf packages/apps/ViPER4AndroidFX
-rm -rf packages/resources/devicesettings
+# --- Remove Directories Safely ---
+# This function checks if a directory exists before trying to remove it.
+force_remove() {
+    if [ -d "$1" ]; then
+        echo "Removing $1..."
+        rm -rf "$1"
+    else
+        echo "Directory $1 does not exist, skipping."
+    fi
+}
 
-# ROM Repo
+force_remove .repo/local_manifests
+force_remove device/xiaomi
+force_remove vendor/xiaomi
+force_remove kernel/xiaomi
+force_remove hardware/xiaomi
+force_remove hardware/dolby
+force_remove packages/apps/ViPER4AndroidFX
+force_remove packages/resources/devicesettings
+
+# --- ROM Repo & Sync ---
+echo "Initializing repository..."
 repo init --depth=1 --no-repo-verify -u https://github.com/ProjectInfinity-X/manifest -b 15 --git-lfs -g default,-mips,-darwin,-notdefault && \
 
-# Sync
+echo "Syncing repository..."
 /opt/crave/resync.sh && \
 
-# Trees
+# --- Clone Device Sources ---
+echo "Cloning device trees and dependencies..."
 git clone https://github.com/MurtazaKolachi/android_device_xiaomi_apollo -b infinit device/xiaomi/apollo && \
 git clone https://github.com/MurtazaKolachi/android_vendor_xiaomi_apollo -b new vendor/xiaomi/apollo && \
 git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b main kernel/xiaomi/apollo && \
 git clone https://github.com/MurtazaKolachi/hardware_xiaomi -b fifteen hardware/xiaomi && \
-
-# Dolby
 git clone https://github.com/MurtazaKolachi/hardware_dolby -b sony-1.3 hardware/dolby && \
-
-# ViPER
 git clone https://github.com/AxionAOSP/android_packages_apps_ViPER4AndroidFX -b v4a packages/apps/ViPER4AndroidFX && \
-
-# Other
 git clone https://github.com/PocoF3Releases/packages_resources_devicesettings -b aosp-15 packages/resources/devicesettings && \
 
 # --- Setup Build Environment ---

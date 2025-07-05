@@ -39,19 +39,35 @@ git clone https://github.com/AxionAOSP/android_packages_apps_ViPER4AndroidFX -b 
 rm -rf packages/resources/devicesettings
 git clone https://github.com/PocoF3Releases/packages_resources_devicesettings -b aosp-15 packages/resources/devicesettings && \
 
-# Build Environment
-export BUILD_USERNAME=Murtaza; \
-export BUILD_HOSTNAME=crave; \
-export TZ=Asia/Karachi; \
+# --- Setup Build Environment ---
+export BUILD_USERNAME=Murtaza
+export BUILD_HOSTNAME=crave
+export TZ=Asia/Karachi
 
-# Vanilla Build
+# --- Vanilla Build ---
+echo "Starting Vanilla Build..."
 . build/envsetup.sh && \
-lunch infinity_apollo-user && make installclean && mka bacon; \
-rm -rf out/target/product/vanilla && rm -rf out/target/product/gapps; \
-cd out/target/product && mv apollo vanilla && cd ../../..; \
+lunch infinity_apollo-user && \
+make installclean && \
+mka bacon && \
 
-# Gapps Build
-cd device/xiaomi/apollo && rm infinity_apollo.mk && mv gapps.txt infinity_apollo.mk && cd ../../..; \
-. build/envsetup.sh; \
-lunch infinity_apollo-user && make installclean && mka bacon; \
-cd out/target/product && mv apollo gapps && cd ../../..; \
+# --- Handle Vanilla Output ---
+echo "Handling Vanilla build output..."
+mv out/target/product/apollo out/target/product/vanilla && \
+echo "Vanilla build finished. Output is in out/target/product/vanilla"
+
+# --- Gapps Build ---
+echo "Setting up for Gapps Build..."
+mv device/xiaomi/apollo/gapps.txt device/xiaomi/apollo/infinity_apollo.mk && \
+
+echo "Starting Gapps Build..."
+make installclean && \
+mka bacon && \
+
+# --- Handle Gapps Output ---
+echo "Handling Gapps build output..."
+mv out/target/product/apollo out/target/product/gapps
+echo "Gapps build finished. Output is in out/target/product/gapps"
+
+# --- Build is Successful!! ---
+echo "All builds completed successfully!"
