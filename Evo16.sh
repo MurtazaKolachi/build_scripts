@@ -1,13 +1,13 @@
 #! /bin/bash
 
 # Remove Manifests
-rm -rf .repo/local_manifests
+# rm -rf .repo/local_manifests
 
 # ROM Repo
-repo init --depth=1 --no-repo-verify -u https://github.com/Mi-Apollo/manifest -b bka --git-lfs -g default,-mips,-darwin,-notdefault && \
+# repo init --depth=1 --no-repo-verify -u https://github.com/Mi-Apollo/manifest -b bka --git-lfs -g default,-mips,-darwin,-notdefault && \
 
 # Sync Rom
-/opt/crave/resync.sh && \
+# /opt/crave/resync.sh && \
 
 # Trees
 
