@@ -25,7 +25,7 @@ git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b main kernel/
 
 # Hardware Tree
 rm -rf hardware/xiaomi
-git clone https://github.com/LineageOS/android_hardware_xiaomi -b lineage-23.0 hardware/xiaomi && \
+git clone https://github.com/VoltageOS-staging/hardware_xiaomi -b 16 hardware/xiaomi && \
 
 # Dolby
 rm -rf hardware/dolby
