@@ -7,7 +7,7 @@
 repo init --depth=1 --no-repo-verify -u https://github.com/Mi-Apollo/evo_manifest -b bka --git-lfs -g default,-mips,-darwin,-notdefault && \
 
 # Sync Rom
-/opt/crave/resync.sh && \
+repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags && \
 
 # Trees
 
