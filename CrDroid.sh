@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # Remove Manifests
-#rm -rf .repo/local_manifests
+rm -rf .repo/local_manifests
 
 # ROM Repo
 repo init --depth=1 --no-repo-verify -u https://github.com/Mi-Apollo/cr_android -b 15.0 --git-lfs -g default,-mips,-darwin,-notdefault && \
