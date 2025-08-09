@@ -4,24 +4,24 @@
 rm -rf .repo/local_manifests
 
 # ROM Repo
-repo init --depth=1 --no-repo-verify -u https://github.com/ProjectInfinity-X/manifest -b 15 --git-lfs -g default,-mips,-darwin,-notdefault && \
+#repo init --depth=1 --no-repo-verify -u https://github.com/Mi-Apollo/infinity_android -b 16 --git-lfs -g default,-mips,-darwin,-notdefault && \
 
 # Sync Rom
-/opt/crave/resync.sh && \
+#/opt/crave/resync.sh && \
 
 # Trees
 
 # Device Tree
 rm -rf device/xiaomi
-git clone https://github.com/MurtazaKolachi/android_device_xiaomi_apollo -b infinit device/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/android_device_xiaomi_apollo -b infinity device/xiaomi/apollo && \
 
 # Vendor Tree
 rm -rf vendor/xiaomi
-git clone https://github.com/MurtazaKolachi/android_vendor_xiaomi_apollo -b new vendor/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/android_vendor_xiaomi_apollo -b 16 vendor/xiaomi/apollo && \
 
 # Kernel Tree
 rm -rf kernel/xiaomi
-git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b main kernel/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b aosp-16 kernel/xiaomi/apollo && \
 
 # Hardware Tree
 rm -rf hardware/xiaomi
@@ -29,7 +29,7 @@ git clone https://github.com/LineageOS/android_hardware_xiaomi -b lineage-23.0 h
 
 # Dolby
 rm -rf hardware/dolby
-git clone https://github.com/MurtazaKolachi/hardware_dolby -b sony-1.3 hardware/dolby && \
+git clone https://github.com/Mi-Apollo/hardware_dolby -b moto-1.0 hardware/dolby && \
 
 # ViPER
 rm -rf packages/apps/ViPER4AndroidFX
@@ -37,7 +37,7 @@ git clone https://github.com/AxionAOSP/android_packages_apps_ViPER4AndroidFX -b 
 
 # Other
 rm -rf packages/resources/devicesettings
-git clone https://github.com/PocoF3Releases/packages_resources_devicesettings -b aosp-15 packages/resources/devicesettings && \
+git clone https://github.com/PocoF3Releases/packages_resources_devicesettings -b aosp-16 packages/resources/devicesettings && \
 
 # --- Setup Build Environment ---
 export BUILD_USERNAME=Murtaza
