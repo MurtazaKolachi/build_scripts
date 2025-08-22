@@ -21,7 +21,7 @@ git clone https://github.com/MurtazaKolachi/android_device_xiaomi_apollo -b axio
 
 # --- Clone Vendor Tree ---
 rm -rf vendor/xiaomi
-git clone https://github.com/MurtazaKolachi/android_vendor_xiaomi_apollo -b 16 vendor/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/android_vendor_xiaomi_apollo -b new vendor/xiaomi/apollo && \
 
 # --- Clone Kernel Tree ---
 rm -rf kernel/xiaomi
@@ -63,7 +63,7 @@ echo "===== Setting up for Gapps Build ====="
 mv device/xiaomi/apollo/gapps.txt device/xiaomi/apollo/lineage_apollo.mk && \
 axion apollo user gms pico && \
 make installclean && \
-ax -br -j$(nproc --all) && \
+ax -br && \
 mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/gapps.txt && \
 
 echo "===== Handling Gapps Output ====="
