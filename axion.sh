@@ -12,8 +12,8 @@ rm -rf .repo/local_manifests
 repo init --depth=1 --no-repo-verify -u https://github.com/AxionAOSP/android.git -b lineage-22.2 --git-lfs -g default,-mips,-darwin,-notdefault && \
 
 # --- Sync ROM ---
-#/opt/crave/resync.sh && \
-repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)
+/opt/crave/resync.sh && \
+#repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)
 
 # --- Clone Device Tree ---
 rm -rf device/xiaomi
