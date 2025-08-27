@@ -62,7 +62,7 @@ mv out/target/product/apollo out/target/product/vanilla && \
 echo "===== Setting up for Gapps Build ====="
 mv device/xiaomi/apollo/gapps.txt device/xiaomi/apollo/lineage_apollo.mk && \
 make installclean && \
-m evolution -j$(nproc --all) && \
+m evolution && \
 mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/gapps.txt && \
 
 echo "===== Handling Gapps Output ====="
