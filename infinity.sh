@@ -17,7 +17,7 @@ repo init --depth=1 --no-repo-verify -u https://github.com/Mi-Apollo/infinity_ma
 
 # --- Clone Device Tree ---
 rm -rf device/xiaomi
-git clone https://github.com/MurtazaKolachi/android_device_xiaomi_apollo -b infinit device/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/android_device_xiaomi_apollo -b infinity device/xiaomi/apollo && \
 
 # --- Clone Vendor Tree ---
 rm -rf vendor/xiaomi
