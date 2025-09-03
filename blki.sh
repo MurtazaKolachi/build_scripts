@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # =============================
-#   EvolutionX Build Script
+#   Black Iron Build Script
 #   For: Vanilla → Gapps
 # =============================
 
@@ -9,10 +9,10 @@
 rm -rf .repo/local_manifests
 
 # --- Init ROM repo ---
-repo init --depth=1 --no-repo-verify -u https://github.com/Mi-Apollo/evo_manifest.git -b bka --git-lfs && \
+repo init -u https://github.com/Black-Iron-Project/manifest -b z16 --git-lfs && \
 
 # --- Clone Manifest---
-git clone https://github.com/MurtazaKolachi/build_manifest -b evo .repo/local_manifests && \
+git clone https://github.com/MurtazaKolachi/build_manifest -b blki .repo/local_manifests && \
 
 # --- Sync ROM ---
 #/opt/crave/resync.sh && \
@@ -25,9 +25,9 @@ repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync 
 # --- Vanilla Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-lunch lineage_apollo-bp2a-user && \
+blkilunch apollo user && \
 make installclean && \
-m evolution && \
+blki b && \
 mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/vanilla.txt && \
 
 echo "===== Handling Vanilla Output ====="
@@ -37,7 +37,7 @@ mv out/target/product/apollo out/target/product/vanilla && \
 echo "===== Setting up for Gapps Build ====="
 mv device/xiaomi/apollo/gapps.txt device/xiaomi/apollo/lineage_apollo.mk && \
 make installclean && \
-m evolution && \
+blki b && \
 mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/gapps.txt && \
 
 echo "===== Handling Gapps Output ====="
