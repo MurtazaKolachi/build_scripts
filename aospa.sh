@@ -1,13 +1,29 @@
-#! /bin/bash
+#!/bin/bash
 
-rm -rf .repo/local_manifests && \
-repo init --depth=1 --no-repo-verify -u https://github.com/AOSPA/manifest.git -b vauxite --git-lfs -g default,-mips,-darwin,-notdefault && \
-/opt/crave/resync.sh && \
-git clone https://github.com/MurtazaKolachi/android_device_xiaomi_apollo -b vauxite device/xiaomi/apollo && \
-git clone https://github.com/MurtazaKolachi/android_vendor_xiaomi_apollo -b main vendor/xiaomi/apollo && \
-git clone https://github.com/MurtazaKolachi/android_kernel_xiaomi_apollo -b main kernel/xiaomi/apollo && \
-git clone https://github.com/MurtazaKolachi/hardware_xiaomi -b fifteen hardware/xiaomi && \
-export BUILD_USERNAME=Murtaza; \
-export BUILD_HOSTNAME=crave; \
-export TZ=Asia/Karachi; \
+# =================================
+#   Project Pixelage Build Script
+# =================================
+
+# --- Remove old local manifests ---
+rm -rf .repo/local_manifests
+
+# --- Init ROM repo ---
+repo init --depth=1 --no-repo-verify -u https://github.com/AOSPA/manifest.git -b vauxite --git-lfs && \
+
+# --- Clone Manifest---
+git clone https://github.com/MurtazaKolachi/build_manifest -b aospa .repo/local_manifests && \
+
+# --- Sync ROM ---
+#/opt/crave/resync.sh && \
+repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)
+
+# =============================
+#  Build Environmnent Setup
+# =============================
+
+# --- Start Build ---
+echo "===== Starting Vanilla Build ====="
+. build/envsetup.sh && \
 ./rom-build.sh apollo
+
+echo "===== Build completed successfully! ====="
