@@ -9,7 +9,7 @@
 rm -rf .repo/local_manifests
 
 # --- Init ROM repo ---
-repo init --depth=1 --no-repo-verify -u https://github.com/Mi-Apollo/lunaris_android.git -b 16 --git-lfs && \
+repo init -u https://github.com/Lunaris-AOSP/android -b 16 --git-lfs && \
 
 # --- Clone Manifest---
 git clone https://github.com/MurtazaKolachi/build_manifest -b luna .repo/local_manifests && \
