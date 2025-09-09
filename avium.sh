@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# =================================
-#   Project Pixelage Build Script
-# =================================
+# =============================
+#   InfinityX Build Script
+#   For: Vanilla → Gapps
+# =============================
 
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
@@ -13,7 +14,7 @@ rm -rf .repo/manifest.xml
 rm -rf packages/resources/devicesettings
 
 # --- Init ROM repo ---
-repo init -u https://github.com/AOSPA/manifest.git -b vauxite --git-lfs && \
+repo init -u https://github.com/AviumUI/android_manifests.git -b avium-16 --git-lfs && \
 
 # --- Sync ROM ---
 #/opt/crave/resync.sh && \
@@ -21,7 +22,7 @@ repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
 
 # --- Clone Device Tree ---
 rm -rf device/xiaomi
-git clone https://github.com/MurtazaKolachi/device_xiaomi_apollo -b aospa device/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/device_xiaomi_apollo -b avium device/xiaomi/apollo && \
 
 # --- Clone Vendor Tree ---
 rm -rf vendor/xiaomi
@@ -29,7 +30,7 @@ git clone https://github.com/MurtazaKolachi/vendor_xiaomi_apollo -b 16 vendor/xi
 
 # --- Clone Kernel Tree ---
 rm -rf kernel/xiaomi
-git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 16 kernel/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/android_kernel_xiaomi_apollo -b staging kernel/xiaomi/apollo && \
 
 # --- Clone Hardware Tree ---
 rm -rf hardware/xiaomi
@@ -53,12 +54,14 @@ git clone https://github.com/MurtazaKolachi/android_packages_resources_deviceset
 # git clone https://github.com/PocoF3Releases/vendor_qcom_wfd vendor/qcom/wfd && \
 
 # =============================
-#  Build Environmnent Setup
+#  Build Environment Setup
 # =============================
 
 # --- Start Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-./rom-build.sh apollo
+lunch lineage_apollo-bp2a-user && \
+make installclean && \
+m bacon -j$(nproc --all)
 
-echo "===== Build completed successfully! ====="
+echo "===== All builds completed successfully! ====="
