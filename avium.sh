@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# =================================
-#   Project Pixelage Build Script
-# =================================
+# =============================
+#   InfinityX Build Script
+#   For: Vanilla → Gapps
+# =============================
 
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
@@ -13,7 +14,7 @@ rm -rf .repo/manifest.xml
 rm -rf packages/resources/devicesettings
 
 # --- Init ROM repo ---
-repo init -u https://github.com/AOSPA/manifest.git -b vauxite --git-lfs && \
+repo init -u https://github.com/VoltageOS/manifest.git -b 16 --git-lfs && \
 
 # --- Sync ROM ---
 #/opt/crave/resync.sh && \
@@ -21,24 +22,22 @@ repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
 
 # --- Clone Device Tree ---
 rm -rf device/xiaomi
-git clone https://github.com/MurtazaKolachi/device_xiaomi_apollo -b aospa device/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/device_xiaomi_apollo -b 16 device/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/device_xiaomi_sm8250-common -b bak device/xiaomi/sm8250-common && \
 
 # --- Clone Vendor Tree ---
 rm -rf vendor/xiaomi
 git clone https://github.com/MurtazaKolachi/vendor_xiaomi_apollo -b 16 vendor/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/vendor_xiaomi_sm8250-common -b 16 vendor/xiaomi/sm8250-common && \
 
 # --- Clone Kernel Tree ---
 rm -rf kernel/xiaomi
-git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 16 kernel/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 16 kernel/xiaomi/sm8250 && \
 
 # --- Clone Hardware Tree ---
 rm -rf hardware/xiaomi
 # git clone https://github.com/LineageOS/android_hardware_xiaomi -b lineage-23.0 hardware/xiaomi && \
 git clone https://github.com/Evolution-X-Devices/hardware_xiaomi -b bka hardware/xiaomi && \ && \
-
-# --- Dolby ---
-# rm -rf hardware/dolby
-# git clone https://github.com/Mi-Apollo/hardware_dolby -b moto-1.0 hardware/dolby && \
 
 # --- ViPER ---
 rm -rf packages/apps/ViPER4AndroidFX
@@ -48,17 +47,21 @@ git clone https://github.com/AxionAOSP/android_packages_apps_ViPER4AndroidFX -b 
 rm -rf packages/resources/devicesettings
 git clone https://github.com/MurtazaKolachi/android_packages_resources_devicesettings -b lineage-23.0 packages/resources/devicesettings && \
 
-# WFD repos
-# git clone https://github.com/PocoF3Releases/device_qcom_wfd device/qcom/wfd && \
-# git clone https://github.com/PocoF3Releases/vendor_qcom_wfd vendor/qcom/wfd && \
+# Private Keys
+rm -rf vendor/lineage-priv/keys
+git clone https://github.com/MurtazaKolachi/keys -b lineage vendor/lineage-priv/keys && \
+
+# Remove output directories to be on safer side
+rm -rf out/target/product/vanilla &&
+rm -rf out/target/product/gapps &&
 
 # =============================
-#  Build Environmnent Setup
+#  Build: Vanilla → Gapps
 # =============================
 
-# --- Start Build ---
+# --- Vanilla Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-./rom-build.sh apollo
-
-echo "===== Build completed successfully! ====="
+breakfast apollo user && \
+make installclean && \
+mka bacon
