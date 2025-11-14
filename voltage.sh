@@ -7,9 +7,11 @@
 
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
+rm -rf .repo/manifests
+rm -rf .repo/manifest.xml
 
 # --- Init ROM repo ---
-repo init -u https://github.com/VoltageOS-staging/manifest.git -b 16 --git-lfs && \
+repo init -u https://github.com/VoltageOS/manifest.git -b 16 --git-lfs && \
 
 # --- Sync ROM ---
 #/opt/crave/resync.sh && \
@@ -25,7 +27,7 @@ git clone https://github.com/MurtazaKolachi/android_vendor_xiaomi_apollo -b 16 v
 
 # --- Clone Kernel Tree ---
 rm -rf kernel/xiaomi
-git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 16 kernel/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/android_kernel_xiaomi_apollo -b staging kernel/xiaomi/apollo && \
 
 # --- Clone Hardware Tree ---
 rm -rf hardware/xiaomi

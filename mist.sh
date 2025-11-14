@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # =============================
-#  RisingOS Revived Build Script
-#  For: Vanilla → Gapps → MicroG
+#  CrDroid Build Script
+#  For: Vanilla
 # =============================
 
 # --- Remove old local manifests ---
@@ -11,15 +11,15 @@ rm -rf .repo/manifests
 rm -rf .repo/manifest.xml
 
 # --- Init ROM repo ---
-repo init -u https://github.com/RisingOS-Revived/android.git -b sixteen --git-lfs && \
+repo init -u https://github.com/Project-Mist-OS/manifest -b bp2a --git-lfs && \
 
 # --- Sync ROM ---
 #/opt/crave/resync.sh && \
-repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all) && \
 
 # --- Clone Device Tree ---
 rm -rf device/xiaomi
-git clone https://github.com/MurtazaKolachi/android_device_xiaomi_apollo -b rising device/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/android_device_xiaomi_apollo -b mist device/xiaomi/apollo && \
 
 # --- Clone Vendor Tree ---
 rm -rf vendor/xiaomi
@@ -45,20 +45,20 @@ git clone https://github.com/AxionAOSP/android_packages_apps_ViPER4AndroidFX -b 
 rm -rf packages/resources/devicesettings
 git clone https://github.com/PocoF3Releases/packages_resources_devicesettings -b aosp-16 packages/resources/devicesettings && \
 
-# WFD Repos
+# WFD repos
 # git clone https://github.com/PocoF3Releases/device_qcom_wfd device/qcom/wfd && \
 # git clone https://github.com/PocoF3Releases/vendor_qcom_wfd vendor/qcom/wfd && \
 
-# =========================================
-#  Build: Vanilla → Gapps → CORE → MicroG
-# =========================================
+# =============================
+#       Build: Vanilla
+# =============================
 
 # --- Vanilla Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-riseup apollo user && \
+mistify apollo user && \
 make installclean && \
-rise b && \
+mist b && \
 mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/vanilla.txt && \
 
 echo "===== Handling Vanilla Output ====="
@@ -68,35 +68,13 @@ mv out/target/product/apollo out/target/product/vanilla && \
 echo "===== Setting up for Gapps Build ====="
 mv device/xiaomi/apollo/gapps.txt device/xiaomi/apollo/lineage_apollo.mk && \
 make installclean && \
-rise b && \
+mist b && \
 mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/gapps.txt && \
 
 echo "===== Handling Gapps Output ====="
 mv out/target/product/apollo out/target/product/gapps && \
 
-# --- MicroG Build ---
-echo "===== Setting up for MicroG Build ====="
-mv device/xiaomi/apollo/microg.txt device/xiaomi/apollo/lineage_apollo.mk && \
-make installclean && \
-rise b && \
-mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/microg.txt && \
-
-echo "===== Handling MicroG Output ====="
-mv out/target/product/apollo out/target/product/microg && \
-
-# --- CORE Build ---
-echo "===== Setting up for Core Build ====="
-mv device/xiaomi/apollo/core.txt device/xiaomi/apollo/lineage_apollo.mk && \
-make installclean && \
-rise b && \
-mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/core.txt && \
-
-echo "===== Handling Core Output ====="
-mv out/target/product/apollo out/target/product/core && \
-
 # --- Restore Vanilla ---
 mv device/xiaomi/apollo/vanilla.txt device/xiaomi/apollo/lineage_apollo.mk && \
 
 echo "===== All builds completed successfully! ====="
-
-nano device/xiaomi/apollo/BoardConfig.mk
