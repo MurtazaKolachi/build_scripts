@@ -7,6 +7,8 @@
 
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
+rm -rf .repo/manifests
+rm -rf .repo/manifest.xml
 
 # --- Init ROM repo ---
 repo init -u https://github.com/Black-Iron-Project/manifest -b z16 --git-lfs && \
@@ -25,7 +27,7 @@ git clone https://github.com/MurtazaKolachi/android_vendor_xiaomi_apollo -b 16 v
 
 # --- Clone Kernel Tree ---
 rm -rf kernel/xiaomi
-git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 16 kernel/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/android_kernel_xiaomi_apollo -b staging kernel/xiaomi/apollo && \
 
 # --- Clone Hardware Tree ---
 rm -rf hardware/xiaomi
@@ -41,7 +43,11 @@ git clone https://github.com/AxionAOSP/android_packages_apps_ViPER4AndroidFX -b 
 
 # --- Device Settings ---
 rm -rf packages/resources/devicesettings
-git clone https://github.com/PocoF3Releases/packages_resources_devicesettings -b aosp-16 packages/resources/devicesettings
+git clone https://github.com/PocoF3Releases/packages_resources_devicesettings -b aosp-16 packages/resources/devicesettings && \
+
+# WFD repos
+# git clone https://github.com/PocoF3Releases/device_qcom_wfd device/qcom/wfd && \
+# git clone https://github.com/PocoF3Releases/vendor_qcom_wfd vendor/qcom/wfd && \
 
 # =============================
 #  Build: Vanilla → Gapps
