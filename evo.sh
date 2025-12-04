@@ -36,7 +36,7 @@ git clone https://github.com/MurtazaKolachi/android_vendor_xiaomi_apollo -b new 
 
 # --- Clone Kernel Tree ---
 rm -rf kernel/xiaomi
-git clone https://github.com/MurtazaKolachi/android_kernel_xiaomi_apollo -b staging kernel/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 16 kernel/xiaomi/apollo && \
 
 # --- Clone Hardware Tree ---
 rm -rf hardware/xiaomi
@@ -72,22 +72,22 @@ echo "===== Starting Vanilla Build ====="
 lunch lineage_apollo-bp3a-user && \
 make installclean && \
 m evolution && \
-mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/vanilla.txt && \
+# mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/vanilla.txt && \
 
-echo "===== Handling Vanilla Output ====="
-mv out/target/product/apollo out/target/product/vanilla && \
+# echo "===== Handling Vanilla Output ====="
+# mv out/target/product/apollo out/target/product/vanilla && \
 
 # --- Gapps Build ---
-echo "===== Setting up for Gapps Build ====="
-mv device/xiaomi/apollo/gapps.txt device/xiaomi/apollo/lineage_apollo.mk && \
-make installclean && \
-m evolution && \
-mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/gapps.txt && \
+# echo "===== Setting up for Gapps Build ====="
+# mv device/xiaomi/apollo/gapps.txt device/xiaomi/apollo/lineage_apollo.mk && \
+# make installclean && \
+# m evolution && \
+# mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/gapps.txt && \
 
-echo "===== Handling Gapps Output ====="
-mv out/target/product/apollo out/target/product/gapps && \
+# echo "===== Handling Gapps Output ====="
+# mv out/target/product/apollo out/target/product/gapps && \
 
 # --- Restore Vanilla ---
-mv device/xiaomi/apollo/vanilla.txt device/xiaomi/apollo/lineage_apollo.mk && \
+# mv device/xiaomi/apollo/vanilla.txt device/xiaomi/apollo/lineage_apollo.mk && \
 
 echo "===== All builds completed successfully! ====="
