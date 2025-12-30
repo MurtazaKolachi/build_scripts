@@ -11,10 +11,10 @@ ulimit -n 16000
 # Clone and Sync OrangeFox
 git clone https://gitlab.com/OrangeFox/sync.git -b master
 cd sync
-./orangefox_sync.sh --branch 12.1 --path ~/OrangeFox/fox_12.1
+./orangefox_sync.sh --branch 12.1 --path ~/OrangeFox
 
 # Clone OrangeFox tree
-cd ~/OrangeFox/fox_12.1
+cd ~/OrangeFox
 rm -rf device/xiaomi/apollo
 git clone https://github.com/murtazakolachi/device_xiaomi_ofox_apollo -b fox-12.1 ./device/xiaomi/apollo
 
