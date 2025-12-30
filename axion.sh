@@ -14,7 +14,7 @@ rm -rf .repo/manifest.xml
 rm -rf packages/resources/devicesettings
 
 # --- Init ROM repo ---
-repo init -u https://github.com/Mi-Apollo/axion_android -b lineage-23.0 --git-lfs && \
+repo init -u https://github.com/Mi-Apollo/axion_android -b lineage-23.1 --git-lfs && \
 
 # --- Sync ROM ---
 #/opt/crave/resync.sh && \
