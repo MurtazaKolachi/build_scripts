@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Create Directories
-mkdir twrp
-cd twrp
+mkdir pbrp
+cd pbrp
 
 # Create Directory for OrangeFox
-repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1 && \
+repo init -u https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-12.1 && \
 repo sync && \
 
 # Just to be on safer side
@@ -25,5 +25,5 @@ git clone https://github.com/murtazakolachi/device_xiaomi_ofox_apollo -b test de
 # Build Environment
 export ALLOW_MISSING_DEPENDENCIES=true
 . build/envsetup.sh && \
-lunch twrp_apollo-eng && \
+lunch pb_apollo-eng && \
 mka recoveryimage
