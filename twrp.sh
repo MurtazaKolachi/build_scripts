@@ -14,7 +14,8 @@ ulimit -n 16000 && \
 
 # Clone TWRP tree
 rm -rf device/xiaomi/apollo && \
-git clone https://github.com/murtazakolachi/device_xiaomi_ofox_apollo -b fox_12.1 device/xiaomi/apollo && \
+rm -rf device/xiaomi/umi && \
+git clone https://github.com/murtazakolachi/device_xiaomi_ofox_apollo -b test device/xiaomi/umi && \
 #git clone https://github.com/murtazakolachi/device_xiaomi_ofox_apollo -b fbev2 device/xiaomi/apollo && \
 
 # Enable ccache
