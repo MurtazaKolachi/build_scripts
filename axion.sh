@@ -22,7 +22,7 @@ repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
 
 # --- Clone Device Tree ---
 rm -rf device/xiaomi
-git clone https://github.com/MurtazaKolachi/device_xiaomi_apollo -b axion device/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/device_xiaomi_apollo -b axion-bq1 device/xiaomi/apollo && \
 
 # --- Clone Vendor Tree ---
 rm -rf vendor/xiaomi
@@ -35,12 +35,12 @@ git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 16 kernel/xi
 
 # --- Clone Hardware Tree ---
 rm -rf hardware/xiaomi
-git clone https://github.com/MurtazaKolachi/android_hardware_xiaomi -b lineage-23.0 hardware/xiaomi && \
-#git clone https://github.com/Evolution-X-Devices/hardware_xiaomi -b bka hardware/xiaomi && \
+#git clone https://github.com/MurtazaKolachi/android_hardware_xiaomi -b lineage-23.0 hardware/xiaomi && \
+git clone https://github.com/Evolution-X-Devices/hardware_xiaomi -b bka hardware/xiaomi && \
 
 # --- Dolby ---
- rm -rf hardware/dolby
- git clone https://github.com/Mi-Apollo/lunaris2_hardware_dolby -b 16.0 hardware/dolby && \
+#rm -rf hardware/dolby
+#git clone https://github.com/Mi-Apollo/lunaris2_hardware_dolby -b 16.0 hardware/dolby && \
 
 # --- Device Settings ---
 rm -rf packages/resources/devicesettings
