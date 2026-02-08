@@ -44,7 +44,7 @@ git clone https://github.com/Evolution-X-Devices/hardware_xiaomi -b bka hardware
 
 # --- Device Settings ---
 rm -rf packages/resources/devicesettings
-git clone https://github.com/MurtazaKolachi/android_packages_resources_devicesettings -b lineage-23.0 packages/resources/devicesettings && \
+git clone https://github.com/Mi-Apollo/android_packages_resources_devicesettings -b lineage-23.2 packages/resources/devicesettings && \
 #git clone https://github.com/PocoF3Releases/packages_resources_devicesettings -b aosp-16 packages/resources/devicesettings && \
 
 # Private Keys
