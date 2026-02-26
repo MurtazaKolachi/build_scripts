@@ -37,15 +37,12 @@ git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 16 kernel/xi
 rm -rf hardware/xiaomi
 #git clone https://github.com/MurtazaKolachi/android_hardware_xiaomi -b lineage-23.0 hardware/xiaomi && \
 git clone https://github.com/Evolution-X-Devices/hardware_xiaomi -b bka hardware/xiaomi && \ && \
+rm -rf hardware/xiaomi/megvii
 
 # --- Dolby ---
 #rm -rf hardware/dolby
 #git clone https://github.com/Mi-Apollo/hardware_dolby -b moto-1.0 hardware/dolby && \
 #git clone https://github.com/Mi-Apollo/lunaris2_hardware_dolby -b 16.0 hardware/dolby && \
-
-# --- ViPER ---
-rm -rf packages/apps/ViPER4AndroidFX
-git clone https://github.com/AxionAOSP/android_packages_apps_ViPER4AndroidFX -b v4a packages/apps/ViPER4AndroidFX && \
 
 # --- Device Settings ---
 rm -rf packages/resources/devicesettings

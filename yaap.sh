@@ -42,17 +42,21 @@ git clone https://github.com/Evolution-X-Devices/hardware_xiaomi -b bka hardware
 #git clone https://github.com/Mi-Apollo/hardware_dolby -b moto-1.0 hardware/dolby && \
 #git clone https://github.com/Mi-Apollo/lunaris2_hardware_dolby -b 16.0 hardware/dolby && \
 
-# --- ViPER ---
-rm -rf packages/apps/ViPER4AndroidFX
-git clone https://github.com/AxionAOSP/android_packages_apps_ViPER4AndroidFX -b v4a packages/apps/ViPER4AndroidFX && \
-
 # --- Device Settings ---
 rm -rf packages/resources/devicesettings
 git clone https://github.com/Mi-Apollo/android_packages_resources_devicesettings -b lineage-23.2 packages/resources/devicesettings && \
 
+# Private Keys
+#rm -rf vendor/yaap-priv/keys
+#git clone https://github.com/MurtazaKolachi/keys -b yaap vendor/yaap-priv/keys && \
+
 # WFD repos
 # git clone https://github.com/PocoF3Releases/device_qcom_wfd device/qcom/wfd && \
 # git clone https://github.com/PocoF3Releases/vendor_qcom_wfd vendor/qcom/wfd && \
+
+# Hardware Lineage Interfaces
+rm -rf hardware/lineage/interfaces
+git clone https://github.com/Mi-Apollo/yaap_hardware_lineage_interfaces hardware/lineage/interfaces && \
 
 # =============================
 #  Build Environment Setup
@@ -63,6 +67,23 @@ echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
 lunch yaap_apollo-user && \
 make installclean && \
-m yaap
+m yaap && \
+mv device/xiaomi/apollo/yaap_apollo.mk device/xiaomi/apollo/vanilla.txt && \
 
-echo "===== Build completed successfully! ====="
+echo "===== Handling Vanilla Output ====="
+mv out/target/product/apollo out/target/product/vanilla && \
+
+# --- Gapps Build ---
+echo "===== Setting up for Gapps Build ====="
+mv device/xiaomi/apollo/gapps.txt device/xiaomi/apollo/yaap_apollo.mk && \
+make installclean && \
+m yaap && \
+mv device/xiaomi/apollo/yaap_apollo.mk device/xiaomi/apollo/gapps.txt && \
+
+echo "===== Handling Gapps Output ====="
+mv out/target/product/apollo out/target/product/gapps && \
+
+# --- Restore Vanilla ---
+mv device/xiaomi/apollo/vanilla.txt device/xiaomi/apollo/yaap_apollo.mk && \
+
+echo "===== All builds completed successfully! ====="
