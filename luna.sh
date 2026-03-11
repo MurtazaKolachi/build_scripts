@@ -14,11 +14,11 @@ rm -rf .repo/manifest.xml
 rm -rf packages/resources/devicesettings
 
 # --- Init ROM repo ---
-repo init -u https://github.com/Mi-Apollo/lunaris_android -b 16.2 --git-lfs && \
+repo init --depth=1 -u https://github.com/Lunaris-AOSP/android -b 16.2 --git-lfs && \
 
 # --- Sync ROM ---
 #/opt/crave/resync.sh && \
-repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune
 
 # --- Clone Device Tree ---
 rm -rf device/xiaomi
@@ -35,8 +35,8 @@ git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 16 kernel/xi
 
 # --- Clone Hardware Tree ---
 rm -rf hardware/xiaomi
-#git clone https://github.com/MurtazaKolachi/android_hardware_xiaomi -b lineage-23.0 hardware/xiaomi && \
-git clone https://github.com/Evolution-X-Devices/hardware_xiaomi -b bka hardware/xiaomi && \
+git clone https://github.com/LineageOS/android_hardware_xiaomi -b lineage-23.2 hardware/xiaomi && \
+#git clone https://github.com/Evolution-X-Devices/hardware_xiaomi -b bka hardware/xiaomi && \
 
 # --- Dolby ---
 rm -rf hardware/dolby
@@ -50,6 +50,10 @@ git clone https://github.com/Mi-Apollo/android_packages_resources_devicesettings
 # WFD repos
 # git clone https://github.com/PocoF3Releases/device_qcom_wfd device/qcom/wfd && \
 # git clone https://github.com/PocoF3Releases/vendor_qcom_wfd vendor/qcom/wfd && \
+
+# Private Keys
+rm -rf vendor/private-keys/keys
+git clone https://github.com/MurtazaKolachi/keys -b main vendor/private-keys/keys && \
 
 # Remove output directories to be on safer side
 rm -rf out/target/product/vanilla &&

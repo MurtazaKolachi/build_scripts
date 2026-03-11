@@ -5,7 +5,7 @@ mkdir pbrp
 cd pbrp
 
 # Create Directory for OrangeFox
-repo init -u https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-12.1 && \
+repo init --depth=1 -u https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-12.1 && \
 repo sync && \
 
 # Clone TWRP tree

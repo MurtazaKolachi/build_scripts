@@ -5,7 +5,7 @@ mkdir twrp
 cd twrp
 
 # Create Directory for OrangeFox
-repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1 && \
+repo init --depth=1 -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1 && \
 repo sync && \
 
 # Clone TWRP tree

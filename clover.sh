@@ -14,11 +14,11 @@ rm -rf .repo/manifest.xml
 rm -rf packages/resources/devicesettings
 
 # --- Init ROM repo ---
-repo init -u https://github.com/The-Clover-Project/manifest.git -b 16-qpr2 --git-lfs && \
+repo init --depth=1 -u https://github.com/The-Clover-Project/manifest.git -b 16-qpr2 --git-lfs && \
 
 # --- Sync ROM ---
 #/opt/crave/resync.sh && \
-repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune
 
 # --- Clone Device Tree ---
 rm -rf device/xiaomi
@@ -35,17 +35,21 @@ git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 16 kernel/xi
 
 # --- Clone Hardware Tree ---
 rm -rf hardware/xiaomi
-#git clone https://github.com/MurtazaKolachi/android_hardware_xiaomi -b lineage-23.0 hardware/xiaomi && \
-git clone https://github.com/Evolution-X-Devices/hardware_xiaomi -b bka hardware/xiaomi && \
+git clone https://github.com/LineageOS/android_hardware_xiaomi -b lineage-23.2 hardware/xiaomi && \
+#git clone https://github.com/Evolution-X-Devices/hardware_xiaomi -b bka hardware/xiaomi && \
 
 # --- Dolby ---
-#rm -rf hardware/dolby
+rm -rf hardware/dolby
 #git clone https://github.com/Mi-Apollo/hardware_dolby -b moto-1.0 hardware/dolby && \
-#git clone https://github.com/Mi-Apollo/lunaris2_hardware_dolby -b 16.0 hardware/dolby && \
+git clone https://github.com/Mi-Apollo/lunaris2_hardware_dolby -b 16.0 hardware/dolby && \
 
 # --- Device Settings ---
 rm -rf packages/resources/devicesettings
 git clone https://github.com/Mi-Apollo/android_packages_resources_devicesettings -b lineage-23.2 packages/resources/devicesettings && \
+
+# Private Keys
+rm -rf vendor/private-keys/keys
+git clone https://github.com/MurtazaKolachi/keys -b main vendor/private-keys/keys && \
 
 # WFD repos
 # git clone https://github.com/PocoF3Releases/device_qcom_wfd device/qcom/wfd && \
@@ -62,7 +66,7 @@ rm -rf out/target/product/gapps &&
 # --- Vanilla Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-lunch clover_apollo-bp4a-user && \
+lunch clover_apollo-bp4a-userdebug && \
 make installclean && \
 mka clover -j$(nproc --all) && \
 mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/vanilla.txt && \
