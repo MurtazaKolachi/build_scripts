@@ -1,12 +1,14 @@
 #!/bin/bash
 
-# Create Directories
+# Create Directory
 mkdir twrp
 cd twrp
 
-# Create Directory for OrangeFox
+# Init and Sync Repo
 repo init --depth=1 -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1 && \
 repo sync && \
+rm -rf bootable/recovery && \
+git clone https://github.com/sekaiacg/twrp_recovery -b android-12.1 bootable/recovery && \
 
 # Clone TWRP tree
 rm -rf device/xiaomi/apollo && \
