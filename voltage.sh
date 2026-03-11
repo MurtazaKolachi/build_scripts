@@ -14,11 +14,11 @@ rm -rf .repo/manifest.xml
 rm -rf packages/resources/devicesettings
 
 # --- Init ROM repo ---
-repo init -u https://github.com/VoltageOS/manifest.git -b 16.2 --git-lfs && \
+repo init --depth=1 -u https://github.com/VoltageOS/manifest.git -b 16.2 --git-lfs && \
 
 # --- Sync ROM ---
 #/opt/crave/resync.sh && \
-repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune
 
 # --- Clone Device Tree ---
 rm -rf device/xiaomi
@@ -32,24 +32,25 @@ git clone https://github.com/MurtazaKolachi/vendor_xiaomi_apollo -b 16 vendor/xi
 rm -rf kernel/xiaomi
 git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 16 kernel/xiaomi/apollo && \
 #git clone https://github.com/MurtazaKolachi/android_kernel_xiaomi_apollo -b staging kernel/xiaomi/apollo && \
+#git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo_magictime -b magictime-new kernel/xiaomi/apollo && \
 
 # --- Clone Hardware Tree ---
 rm -rf hardware/xiaomi
-#git clone https://github.com/MurtazaKolachi/android_hardware_xiaomi -b lineage-23.0 hardware/xiaomi && \
-git clone https://github.com/Evolution-X-Devices/hardware_xiaomi -b bka hardware/xiaomi && \
+git clone https://github.com/LineageOS/android_hardware_xiaomi -b lineage-23.2 hardware/xiaomi && \
+#git clone https://github.com/Evolution-X-Devices/hardware_xiaomi -b bka hardware/xiaomi && \
 
 # --- Dolby ---
-#rm -rf hardware/dolby
+rm -rf hardware/dolby
 #git clone https://github.com/Mi-Apollo/hardware_dolby -b moto-1.0 hardware/dolby && \
-#git clone https://github.com/Mi-Apollo/lunaris2_hardware_dolby -b 16.0 hardware/dolby && \
+git clone https://github.com/Mi-Apollo/lunaris2_hardware_dolby -b 16.0 hardware/dolby && \
 
 # --- Device Settings ---
 rm -rf packages/resources/devicesettings
 git clone https://github.com/Mi-Apollo/android_packages_resources_devicesettings -b lineage-23.2 packages/resources/devicesettings && \
 
 # Private Keys
-rm -rf vendor/voltage-priv/keys
-git clone https://github.com/MurtazaKolachi/keys -b voltage vendor/voltage-priv/keys && \
+rm -rf vendor/private-keys/keys
+git clone https://github.com/MurtazaKolachi/keys -b voltage vendor/private-keys/keys && \
 
 # Remove output directories to be on safer side
 rm -rf out/target/product/vanilla &&
@@ -62,7 +63,7 @@ rm -rf out/target/product/gapps &&
 # --- Vanilla Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-breakfast apollo user && \
+breakfast apollo userdebug && \
 make installclean && \
 mka bacon && \
 

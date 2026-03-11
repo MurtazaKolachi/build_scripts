@@ -13,12 +13,12 @@ rm -rf .repo/manifest.xml
 rm -rf packages/resources/devicesettings
 
 # --- Init ROM repo ---
-repo init -u https://github.com/PixelOS-AOSP/manifest.git -b fifteen --git-lfs && \
-repo init -u https://github.com/PixelOS-AOSP/android_manifest -b sixteen-qpr1 --git-lfs
+repo init --depth=1 -u https://github.com/PixelOS-AOSP/manifest.git -b fifteen --git-lfs && \
+repo init --depth=1 -u https://github.com/PixelOS-AOSP/android_manifest -b sixteen-qpr2 --git-lfs
 
 # --- Sync ROM ---
 #/opt/crave/resync.sh && \
-repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
+repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune --optimized-fetch --prune
 
 # --- Clone Device Tree ---
 rm -rf device/xiaomi
@@ -35,18 +35,22 @@ git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 16 kernel/xi
 
 # --- Clone Hardware Tree ---
 rm -rf hardware/xiaomi
-#git clone https://github.com/MurtazaKolachi/android_hardware_xiaomi -b lineage-23.0 hardware/xiaomi && \
-git clone https://github.com/Evolution-X-Devices/hardware_xiaomi -b bka hardware/xiaomi && \ && \
+git clone https://github.com/LineageOS/android_hardware_xiaomi -b lineage-23.2 hardware/xiaomi && \
+#git clone https://github.com/Evolution-X-Devices/hardware_xiaomi -b bka hardware/xiaomi && \ && \
 rm -rf hardware/xiaomi/megvii
 
 # --- Dolby ---
-#rm -rf hardware/dolby
+rm -rf hardware/dolby
 #git clone https://github.com/Mi-Apollo/hardware_dolby -b moto-1.0 hardware/dolby && \
-#git clone https://github.com/Mi-Apollo/lunaris2_hardware_dolby -b 16.0 hardware/dolby && \
+git clone https://github.com/Mi-Apollo/lunaris2_hardware_dolby -b 16.0 hardware/dolby && \
 
 # --- Device Settings ---
 rm -rf packages/resources/devicesettings
 git clone https://github.com/Mi-Apollo/android_packages_resources_devicesettings -b lineage-23.2 packages/resources/devicesettings
+
+# Private Keys
+rm -rf vendor/private-keys/keys
+git clone https://github.com/MurtazaKolachi/keys -b pos vendor/private-keys/keys && \
 
 # =============================
 #  Build Environment Setup
@@ -55,7 +59,7 @@ git clone https://github.com/Mi-Apollo/android_packages_resources_devicesettings
 # --- Start Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-breakfast apollo user && \
+breakfast apollo userdebug && \
 make installclean && \
 m pixelos
 

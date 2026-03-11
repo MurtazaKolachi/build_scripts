@@ -13,7 +13,7 @@ rm -rf .repo/manifest.xml
 rm -rf packages/resources/devicesettings
 
 # --- Init ROM repo ---
-repo init -u https://github.com/LumineDroid/platform_manifest -b bellflower --git-lfs && \
+repo init --depth=1 -u https://github.com/LumineDroid/platform_manifest -b bellflower --git-lfs && \
 
 # --- Sync ROM ---
 #/opt/crave/resync.sh && \
@@ -45,6 +45,10 @@ git clone https://github.com/Mi-Apollo/lunaris2_hardware_dolby -b 16.0 hardware/
 # --- Device Settings ---
 rm -rf packages/resources/devicesettings
 git clone https://github.com/Mi-Apollo/android_packages_resources_devicesettings -b lineage-23.2 packages/resources/devicesettings && \
+
+# Private Keys
+rm -rf vendor/private-keys/keys
+git clone https://github.com/MurtazaKolachi/keys -b main vendor/private-keys/keys && \
 
 # WFD repos
 # git clone https://github.com/PocoF3Releases/device_qcom_wfd device/qcom/wfd && \
