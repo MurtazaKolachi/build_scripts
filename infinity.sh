@@ -5,6 +5,9 @@
 #   For: Vanilla → Gapps
 # =============================
 
+mkdir ~/infinity
+cd ~/infinity
+
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests
@@ -14,7 +17,7 @@ rm -rf .repo/manifest.xml
 rm -rf packages/resources/devicesettings
 
 # --- Init ROM repo ---
-repo init --depth=1 -u https://github.com/Mi-Apollo/infinity_manifest.git -b 16 --git-lfs && \
+repo init --depth=1 -u https://github.com/ProjectInfinity-X/manifest.git -b 16 --git-lfs && \
 
 # --- Sync ROM ---
 #/opt/crave/resync.sh && \
@@ -26,7 +29,7 @@ git clone https://github.com/MurtazaKolachi/device_xiaomi_apollo -b infinity dev
 
 # --- Clone Vendor Tree ---
 rm -rf vendor/xiaomi
-git clone https://github.com/MurtazaKolachi/vendor_xiaomi_apollo -b nfc vendor/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/vendor_xiaomi_apollo -b 16 vendor/xiaomi/apollo && \
 
 # --- Clone Kernel Tree ---
 rm -rf kernel/xiaomi
@@ -66,7 +69,7 @@ rm -rf out/target/product/gapps &&
 # --- Vanilla Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-lunch infinity_apollo-userdebug && \
+lunch infinity_apollo-user && \
 make installclean && \
 m bacon && \
 mv device/xiaomi/apollo/infinity_apollo.mk device/xiaomi/apollo/vanilla.txt && \

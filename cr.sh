@@ -5,6 +5,9 @@
 #   For: Vanilla → Gapps
 # =============================
 
+mkdir ~/cr
+cd ~/cr
+
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests
@@ -14,7 +17,7 @@ rm -rf .repo/manifest.xml
 rm -rf packages/resources/devicesettings
 
 # --- Init ROM repo ---
-repo init --depth=1 -u https://github.com/Mi-Apollo/cr_android.git -b 16.0 --git-lfs && \
+repo init --depth=1 -u https://github.com/crdroidandroid/android.git -b 16.0 --git-lfs && \
 
 # --- Sync ROM ---
 #/opt/crave/resync.sh && \
@@ -62,7 +65,7 @@ git clone https://github.com/MurtazaKolachi/keys -b main vendor/private-keys/key
 # --- Vanilla Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-breakfast apollo userdebug && \
+breakfast apollo user && \
 make installclean && \
 mka bacon
 

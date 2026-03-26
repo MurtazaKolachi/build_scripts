@@ -4,6 +4,9 @@
 #    Derpfest Build Script
 # =============================
 
+mkdir ~/derp
+cd ~/derp
+
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests
@@ -62,7 +65,7 @@ git clone https://github.com/MurtazaKolachi/keys -b main vendor/private-keys/key
 # --- Start Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-lunch lineage_apollo-bp4a-userdebug && \
+lunch lineage_apollo-bp4a-user && \
 make installclean && \
 mka derp
 
