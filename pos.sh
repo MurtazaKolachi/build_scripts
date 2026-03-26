@@ -4,6 +4,9 @@
 #  PixelOS Build Script
 # =============================
 
+mkdir ~/pixelos
+cd ~/pixelos
+
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests
@@ -13,7 +16,6 @@ rm -rf .repo/manifest.xml
 rm -rf packages/resources/devicesettings
 
 # --- Init ROM repo ---
-repo init --depth=1 -u https://github.com/PixelOS-AOSP/manifest.git -b fifteen --git-lfs && \
 repo init --depth=1 -u https://github.com/PixelOS-AOSP/android_manifest -b sixteen-qpr2 --git-lfs
 
 # --- Sync ROM ---

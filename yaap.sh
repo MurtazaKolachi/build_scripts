@@ -4,6 +4,9 @@
 #  Project YAAP Build Script
 # =============================
 
+mkdir ~/yaap
+cd ~/yaap
+
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests
@@ -65,7 +68,7 @@ git clone https://github.com/Mi-Apollo/yaap_hardware_lineage_interfaces hardware
 # --- Start Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-lunch yaap_apollo-userdebug && \
+lunch yaap_apollo-user && \
 make installclean && \
 m yaap && \
 mv device/xiaomi/apollo/yaap_apollo.mk device/xiaomi/apollo/vanilla.txt && \

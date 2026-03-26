@@ -4,6 +4,9 @@
 #  LumineDroid Build Script
 # =============================
 
+mkdir ~/lumine
+cd ~/lumine
+
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests

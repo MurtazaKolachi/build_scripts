@@ -5,6 +5,9 @@
 #   For: Vanilla → Gapps
 # =============================
 
+mkdir ~/matrixx
+cd ~/matrixx
+
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests
@@ -14,7 +17,7 @@ rm -rf .repo/manifest.xml
 rm -rf packages/resources/devicesettings
 
 # --- Init ROM repo ---
-repo init --depth=1 -u https://github.com/Mi-Apollo/matrixx_android.git -b 16.0 --git-lfs && \
+repo init --depth=1 -u https://github.com/ProjectMatrixx/android.git -b 16.0 --git-lfs && \
 
 # --- Sync ROM ---
 #/opt/crave/resync.sh && \
@@ -66,7 +69,7 @@ rm -rf out/target/product/gapps &&
 # --- Vanilla Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-breakfast apollo userdebug && \
+breakfast apollo user && \
 make installclean && \
 mka bacon && \
 mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/vanilla.txt && \
