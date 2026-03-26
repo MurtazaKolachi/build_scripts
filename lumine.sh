@@ -4,6 +4,9 @@
 #  LumineDroid Build Script
 # =============================
 
+mkdir ~/lumine
+cd ~/lumine
+
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests
@@ -60,7 +63,7 @@ git clone https://github.com/MurtazaKolachi/keys -b main vendor/private-keys/key
 
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh &&
-lunch apollo-bp4a-user &&
+lunch lumine_apollo-bp4a-user &&
 make installclean &&
 mka bacon
 

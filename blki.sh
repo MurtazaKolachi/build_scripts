@@ -5,6 +5,9 @@
 #   For: Vanilla → Gapps
 # =============================
 
+mkdir ~/blki
+cd ~/blki
+
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests
@@ -66,7 +69,7 @@ rm -rf out/target/product/gapps &&
 # --- Vanilla Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-blkilunch apollo userdebug && \
+blkilunch apollo user && \
 make installclean && \
 blki b && \
 mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/vanilla.txt && \

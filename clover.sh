@@ -5,6 +5,9 @@
 #   For: Vanilla → Gapps
 # =============================
 
+mkdir ~/clover
+cd ~/clover
+
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests
@@ -66,7 +69,7 @@ rm -rf out/target/product/gapps &&
 # --- Vanilla Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-lunch clover_apollo-bp4a-userdebug && \
+lunch clover_apollo-bp4a-user && \
 make installclean && \
 mka clover -j$(nproc --all) && \
 mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/vanilla.txt && \

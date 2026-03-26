@@ -5,6 +5,9 @@
 #   For: Vanilla → Gapps
 # =============================
 
+mkdir ~/avium
+cd ~/avium
+
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests
@@ -61,7 +64,7 @@ git clone https://github.com/MurtazaKolachi/keys -b main vendor/private-keys/key
 # --- Start Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-lunch lineage_apollo-bp2a-userdebug && \
+lunch lineage_apollo-bp2a-user && \
 make installclean && \
 m bacon -j$(nproc --all)
 

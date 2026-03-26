@@ -5,6 +5,9 @@
 #   For: Vanilla → Gapps
 # =============================
 
+mkdir ~/hertzify
+cd ~/hertzify
+
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests
@@ -66,7 +69,7 @@ rm -rf out/target/product/gapps &&
 # --- Vanilla Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-lunch hertzify_apollo-bp4a-userdebug && \
+lunch hertzify_apollo-bp4a-user && \
 make installclean && \
 mka bacon && \
 mv device/xiaomi/apollo/hertzify_apollo.mk device/xiaomi/apollo/vanilla.txt && \

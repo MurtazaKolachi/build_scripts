@@ -5,6 +5,9 @@
 #  For: Vanilla → Gapps → MicroG
 # =============================
 
+mkdir ~/rising
+cd ~/rising
+
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests
@@ -66,7 +69,7 @@ rm -rf out/target/product/gapps &&
 # --- Vanilla Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-riseup apollo userdebug && \
+riseup apollo user && \
 make installclean && \
 rise b && \
 mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/vanilla.txt && \

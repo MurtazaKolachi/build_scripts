@@ -4,6 +4,9 @@
 #   Project Pixelage Build Script
 # =================================
 
+mkdir ~/pixelage
+cd ~/pixelage
+
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests
@@ -61,7 +64,7 @@ git clone https://github.com/MurtazaKolachi/keys -b main vendor/private-keys/key
 # --- Start Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-lunch pixelage_apollo-bp1a-userdebug && \ && \
+lunch pixelage_apollo-bp1a-user && \ && \
 make installclean && \
 mka bacon
 

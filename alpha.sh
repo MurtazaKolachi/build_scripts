@@ -5,6 +5,9 @@
 #  For: Vanilla
 # =============================
 
+mkdir ~/alpha
+cd ~/alpha
+
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests
@@ -62,7 +65,7 @@ git clone https://github.com/MurtazaKolachi/keys -b main vendor/private-keys/key
 # --- Vanilla Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-breakfast apollo userdebug && \
+breakfast apollo user && \
 make installclean && \
 mka bacon
 

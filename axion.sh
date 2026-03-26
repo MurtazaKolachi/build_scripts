@@ -5,6 +5,9 @@
 #  For: Vanilla → Gapps
 # =============================
 
+mkdir ~/axion
+cd ~/axion
+
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests
@@ -14,7 +17,7 @@ rm -rf .repo/manifest.xml
 rm -rf packages/resources/devicesettings
 
 # --- Init ROM repo ---
-repo init --depth=1 -u https://github.com/Mi-Apollo/axion_android -b lineage-23.1 --git-lfs && \
+repo init --depth=1 -u https://github.com/AxionAOSP/android.git -b lineage-23.2 --git-lfs && \
 
 # --- Sync ROM ---
 #/opt/crave/resync.sh && \
@@ -49,7 +52,7 @@ git clone https://github.com/Mi-Apollo/android_packages_resources_devicesettings
 
 # Private Keys
 rm -rf vendor/private-keys/keys
-git clone https://github.com/MurtazaKolachi/keys -b axion vendor/private-keys/keys && \
+git clone https://github.com/MurtazaKolachi/keys -b main vendor/private-keys/keys && \
 
 # WFD Repos
 #git clone https://github.com/PocoF3Releases/device_qcom_wfd device/qcom/wfd && \
@@ -66,7 +69,7 @@ rm -rf out/target/product/gapps &&
 # --- Vanilla Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-axion apollo userdebug va && \
+axion apollo user va && \
 make installclean && \
 ax -br && \
 
@@ -75,7 +78,7 @@ mv out/target/product/apollo out/target/product/vanilla && \
 
 # --- Gapps Build ---
 echo "===== Setting up for Gapps Build ====="
-axion apollo userdebug gms pico && \
+axion apollo user gms pico && \
 make installclean && \
 ax -br && \
 
