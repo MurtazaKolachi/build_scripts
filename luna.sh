@@ -2,7 +2,7 @@
 
 # =============================
 #   Lunaris AOSP Build Script
-#   For: Vanilla → Gapps
+#   For: Vanilla & Gapps
 # =============================
 
 mkdir ~/luna
@@ -56,14 +56,14 @@ git clone https://github.com/Mi-Apollo/android_packages_resources_devicesettings
 
 # Private Keys
 rm -rf vendor/private-keys/keys
-git clone https://github.com/MurtazaKolachi/keys -b main vendor/private-keys/keys && \
+git clone https://github.com/MurtazaKolachi/keys -b test vendor/private-keys/keys && \
 
 # Remove output directories to be on safer side
 rm -rf out/target/product/vanilla &&
 rm -rf out/target/product/gapps &&
 
 # =============================
-#  Build: Vanilla → Gapps
+#  Build: Vanilla & Gapps
 # =============================
 
 # --- Vanilla Build ---
@@ -72,7 +72,6 @@ echo "===== Starting Vanilla Build ====="
 lunch lineage_apollo-bp4a-user && \
 make installclean && \
 m bacon && \
-mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/vanilla.txt && \
 
 echo "===== Handling Vanilla Output ====="
 mv out/target/product/apollo out/target/product/vanilla && \
@@ -82,12 +81,8 @@ echo "===== Setting up for Gapps Build ====="
 mv device/xiaomi/apollo/gapps.txt device/xiaomi/apollo/lineage_apollo.mk && \
 make installclean && \
 m bacon && \
-mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/gapps.txt && \
 
 echo "===== Handling Gapps Output ====="
 mv out/target/product/apollo out/target/product/gapps && \
-
-# --- Restore Vanilla ---
-mv device/xiaomi/apollo/vanilla.txt device/xiaomi/apollo/lineage_apollo.mk && \
 
 echo "===== All builds completed successfully! ====="
