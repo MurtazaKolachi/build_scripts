@@ -2,7 +2,7 @@
 
 # =============================
 #   InfinityX Build Script
-#   For: Vanilla → Gapps
+#   For: Vanilla & Gapps
 # =============================
 
 mkdir ~/avium

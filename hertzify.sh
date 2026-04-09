@@ -2,7 +2,7 @@
 
 # =============================
 #   Hertzify Build Script
-#   For: Vanilla → Gapps
+#   For: Gapps
 # =============================
 
 mkdir ~/hertzify
@@ -63,31 +63,14 @@ rm -rf out/target/product/vanilla &&
 rm -rf out/target/product/gapps &&
 
 # =============================
-#  Build: Vanilla → Gapps
+#  Build: Gapps
 # =============================
 
-# --- Vanilla Build ---
+# --- GAPPS Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
 lunch hertzify_apollo-bp4a-user && \
 make installclean && \
-mka bacon && \
-mv device/xiaomi/apollo/hertzify_apollo.mk device/xiaomi/apollo/vanilla.txt && \
-
-echo "===== Handling Vanilla Output ====="
-mv out/target/product/apollo out/target/product/vanilla && \
-
-# --- Gapps Build ---
-echo "===== Setting up for Gapps Build ====="
-mv device/xiaomi/apollo/gapps.txt device/xiaomi/apollo/hertzify_apollo.mk && \
-make installclean && \
-mka bacon && \
-mv device/xiaomi/apollo/hertzify_apollo.mk device/xiaomi/apollo/gapps.txt && \
-
-echo "===== Handling Gapps Output ====="
-mv out/target/product/apollo out/target/product/gapps && \
-
-# --- Restore Vanilla ---
-mv device/xiaomi/apollo/vanilla.txt device/xiaomi/apollo/hertzify_apollo.mk && \
+mka bacon
 
 echo "===== All builds completed successfully! ====="

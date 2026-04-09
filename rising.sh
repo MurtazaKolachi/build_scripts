@@ -2,7 +2,7 @@
 
 # =============================
 #  RisingOS Revived Build Script
-#  For: Vanilla → Gapps → MicroG
+#  For: Vanilla & Gapps & MicroG
 # =============================
 
 mkdir ~/rising
@@ -63,7 +63,7 @@ rm -rf out/target/product/vanilla &&
 rm -rf out/target/product/gapps &&
 
 # =========================================
-#  Build: Vanilla → Gapps → CORE → MicroG
+#  Build: Vanilla & Gapps & CORE & MicroG
 # =========================================
 
 # --- Vanilla Build ---
@@ -72,43 +72,33 @@ echo "===== Starting Vanilla Build ====="
 riseup apollo user && \
 make installclean && \
 rise b && \
-mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/vanilla.txt && \
 
 echo "===== Handling Vanilla Output ====="
 mv out/target/product/apollo out/target/product/vanilla && \
 
 # --- Gapps Build ---
 echo "===== Setting up for Gapps Build ====="
-mv device/xiaomi/apollo/gapps.txt device/xiaomi/apollo/lineage_apollo.mk && \
 make installclean && \
 rise b && \
-mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/gapps.txt && \
 
 echo "===== Handling Gapps Output ====="
 mv out/target/product/apollo out/target/product/gapps && \
 
 # --- MicroG Build ---
 echo "===== Setting up for MicroG Build ====="
-mv device/xiaomi/apollo/microg.txt device/xiaomi/apollo/lineage_apollo.mk && \
 make installclean && \
 rise b && \
-mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/microg.txt && \
 
 echo "===== Handling MicroG Output ====="
 mv out/target/product/apollo out/target/product/microg && \
 
 # --- CORE Build ---
 echo "===== Setting up for Core Build ====="
-mv device/xiaomi/apollo/core.txt device/xiaomi/apollo/lineage_apollo.mk && \
 make installclean && \
 rise b && \
-mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/core.txt && \
 
 echo "===== Handling Core Output ====="
 mv out/target/product/apollo out/target/product/core && \
-
-# --- Restore Vanilla ---
-mv device/xiaomi/apollo/vanilla.txt device/xiaomi/apollo/lineage_apollo.mk && \
 
 echo "===== All builds completed successfully! ====="
 

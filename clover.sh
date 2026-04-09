@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # =============================
-#   EvolutionX Build Script
-#   For: Vanilla → Gapps
+#   Clover Build Script
+#   For: Gapps
 # =============================
 
 mkdir ~/clover
@@ -63,31 +63,14 @@ rm -rf out/target/product/vanilla &&
 rm -rf out/target/product/gapps &&
 
 # =============================
-#  Build: Vanilla → Gapps
+#  Build: Vanilla & Gapps
 # =============================
 
-# --- Vanilla Build ---
+# --- GAPPS Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
 lunch clover_apollo-bp4a-user && \
 make installclean && \
-mka clover -j$(nproc --all) && \
-mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/vanilla.txt && \
-
-echo "===== Handling Vanilla Output ====="
-mv out/target/product/apollo out/target/product/vanilla && \
-
-# --- Gapps Build ---
-echo "===== Setting up for Gapps Build ====="
-mv device/xiaomi/apollo/gapps.txt device/xiaomi/apollo/lineage_apollo.mk && \
-make installclean && \
-mka clover -j$(nproc --all) && \
-mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/gapps.txt && \
-
-echo "===== Handling Gapps Output ====="
-mv out/target/product/apollo out/target/product/gapps && \
-
-# --- Restore Vanilla ---
-mv device/xiaomi/apollo/vanilla.txt device/xiaomi/apollo/lineage_apollo.mk && \
+mka clover && \
 
 echo "===== All builds completed successfully! ====="
