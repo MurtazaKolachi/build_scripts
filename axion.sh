@@ -2,7 +2,7 @@
 
 # =============================
 #  Axion AOSP Build Script
-#  For: Vanilla → Gapps
+#  For: Vanilla & Gapps
 # =============================
 
 mkdir ~/axion
@@ -63,7 +63,7 @@ rm -rf out/target/product/vanilla &&
 rm -rf out/target/product/gapps &&
 
 # =============================
-#   Build: Vanilla → Gapps
+#   Build: Vanilla & Gapps
 # =============================
 
 # --- Vanilla Build ---
@@ -78,7 +78,7 @@ mv out/target/product/apollo out/target/product/vanilla && \
 
 # --- Gapps Build ---
 echo "===== Setting up for Gapps Build ====="
-axion apollo user gms pico && \
+axion apollo user gms core && \
 make installclean && \
 ax -br && \
 

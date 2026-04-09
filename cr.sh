@@ -2,7 +2,7 @@
 
 # =============================
 #   CrDroid Build Script
-#   For: Vanilla → Gapps
+#   For: Vanilla & Gapps
 # =============================
 
 mkdir ~/cr
@@ -59,7 +59,7 @@ git clone https://github.com/MurtazaKolachi/keys -b main vendor/private-keys/key
 # git clone https://github.com/PocoF3Releases/vendor_qcom_wfd vendor/qcom/wfd && \
 
 # =============================
-#  Build: Vanilla → Gapps
+#  Build: Vanilla & Gapps
 # =============================
 
 # --- Vanilla Build ---
