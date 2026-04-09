@@ -71,22 +71,16 @@ echo "===== Starting Vanilla Build ====="
 lunch yaap_apollo-user && \
 make installclean && \
 m yaap && \
-mv device/xiaomi/apollo/yaap_apollo.mk device/xiaomi/apollo/vanilla.txt && \
 
 echo "===== Handling Vanilla Output ====="
 mv out/target/product/apollo out/target/product/vanilla && \
 
 # --- Gapps Build ---
 echo "===== Setting up for Gapps Build ====="
-mv device/xiaomi/apollo/gapps.txt device/xiaomi/apollo/yaap_apollo.mk && \
 make installclean && \
 m yaap && \
-mv device/xiaomi/apollo/yaap_apollo.mk device/xiaomi/apollo/gapps.txt && \
 
 echo "===== Handling Gapps Output ====="
 mv out/target/product/apollo out/target/product/gapps && \
-
-# --- Restore Vanilla ---
-mv device/xiaomi/apollo/vanilla.txt device/xiaomi/apollo/yaap_apollo.mk && \
 
 echo "===== All builds completed successfully! ====="

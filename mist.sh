@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # =============================
-#  CrDroid Build Script
-#  For: Vanilla
+#  MistOS Build Script
+#  For: Vanilla & GAPPS
 # =============================
 
 mkdir ~/mist
@@ -72,22 +72,16 @@ echo "===== Starting Vanilla Build ====="
 mistify apollo user && \
 make installclean && \
 mist b && \
-mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/vanilla.txt && \
 
 echo "===== Handling Vanilla Output ====="
 mv out/target/product/apollo out/target/product/vanilla && \
 
 # --- Gapps Build ---
 echo "===== Setting up for Gapps Build ====="
-mv device/xiaomi/apollo/gapps.txt device/xiaomi/apollo/lineage_apollo.mk && \
 make installclean && \
 mist b && \
-mv device/xiaomi/apollo/lineage_apollo.mk device/xiaomi/apollo/gapps.txt && \
 
 echo "===== Handling Gapps Output ====="
 mv out/target/product/apollo out/target/product/gapps && \
-
-# --- Restore Vanilla ---
-mv device/xiaomi/apollo/vanilla.txt device/xiaomi/apollo/lineage_apollo.mk && \
 
 echo "===== All builds completed successfully! ====="

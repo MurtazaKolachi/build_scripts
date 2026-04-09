@@ -2,7 +2,7 @@
 
 # =============================
 #  Axion AOSP Build Script
-#  For: Vanilla → Gapps
+#  For: Vanilla & Gapps
 # =============================
 
 mkdir ~/axion
@@ -51,8 +51,8 @@ git clone https://github.com/Mi-Apollo/android_packages_resources_devicesettings
 #git clone https://github.com/PocoF3Releases/packages_resources_devicesettings -b aosp-16 packages/resources/devicesettings && \
 
 # Private Keys
-rm -rf vendor/private-keys/keys
-git clone https://github.com/MurtazaKolachi/keys -b axion vendor/private-keys/keys && \
+rm -rf vendor/lineage-priv/keys
+git clone https://github.com/MurtazaKolachi/keys -b axion vendor/lineage-priv/keys && \
 
 # WFD Repos
 #git clone https://github.com/PocoF3Releases/device_qcom_wfd device/qcom/wfd && \
@@ -63,7 +63,7 @@ rm -rf out/target/product/vanilla &&
 rm -rf out/target/product/gapps &&
 
 # =============================
-#   Build: Vanilla → Gapps
+#   Build: Vanilla & Gapps
 # =============================
 
 # --- Vanilla Build ---
@@ -78,7 +78,7 @@ mv out/target/product/apollo out/target/product/vanilla && \
 
 # --- Gapps Build ---
 echo "===== Setting up for Gapps Build ====="
-axion apollo user gms pico && \
+axion apollo user gms core && \
 make installclean && \
 ax -br && \
 

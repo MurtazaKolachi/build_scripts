@@ -2,7 +2,7 @@
 
 # =============================
 #   Matrixx Build Script
-#   For: Vanilla → Gapps
+#   For: Vanilla & Gapps
 # =============================
 
 mkdir ~/matrixx
@@ -63,7 +63,7 @@ rm -rf out/target/product/vanilla &&
 rm -rf out/target/product/gapps &&
 
 # =============================
-#  Build: Vanilla → Gapps
+#  Build: Vanilla & Gapps
 # =============================
 
 # --- Vanilla Build ---
@@ -72,22 +72,16 @@ echo "===== Starting Vanilla Build ====="
 lunch matrixx_apollo-bp4a-user && \
 make installclean && \
 m matrixx && \
-mv device/xiaomi/apollo/matrixx_apollo.mk device/xiaomi/apollo/vanilla.txt && \
 
 echo "===== Handling Vanilla Output ====="
 mv out/target/product/apollo out/target/product/vanilla && \
 
 # --- Gapps Build ---
 echo "===== Setting up for Gapps Build ====="
-mv device/xiaomi/apollo/gapps.txt device/xiaomi/apollo/matrixx_apollo.mk && \
 make installclean && \
 m matrixx && \
-mv device/xiaomi/apollo/matrixx_apollo.mk device/xiaomi/apollo/gapps.txt && \
 
 echo "===== Handling Gapps Output ====="
 mv out/target/product/apollo out/target/product/gapps && \
-
-# --- Restore Vanilla ---
-mv device/xiaomi/apollo/vanilla.txt device/xiaomi/apollo/matrixx_apollo.mk && \
 
 echo "===== All builds completed successfully! ====="
