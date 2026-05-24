@@ -28,11 +28,11 @@ git clone https://github.com/MurtazaKolachi/device_xiaomi_apollo -b pos device/x
 
 # --- Clone Vendor Tree ---
 rm -rf vendor/xiaomi
-git clone https://github.com/MurtazaKolachi/vendor_xiaomi_apollo -b pos vendor/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/vendor_xiaomi_apollo -b 16 vendor/xiaomi/apollo && \
 
 # --- Clone Kernel Tree ---
 rm -rf kernel/xiaomi
-git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 16 kernel/xiaomi/apollo && \
+git clone --recurse-submodules https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 16 kernel/xiaomi/apollo && \
 #git clone https://github.com/MurtazaKolachi/android_kernel_xiaomi_apollo -b staging kernel/xiaomi/apollo && \
 
 # --- Clone Hardware Tree ---
@@ -44,15 +44,15 @@ rm -rf hardware/xiaomi/megvii
 # --- Dolby ---
 rm -rf hardware/dolby
 #git clone https://github.com/Mi-Apollo/hardware_dolby -b moto-1.0 hardware/dolby && \
-git clone https://github.com/Mi-Apollo/lunaris2_hardware_dolby -b 16.0 hardware/dolby && \
+git clone https://github.com/Mi-Apollo/lunaris2_hardware_dolby -b 16 hardware/dolby && \
 
 # --- Device Settings ---
 rm -rf packages/resources/devicesettings
 git clone https://github.com/Mi-Apollo/android_packages_resources_devicesettings -b lineage-23.2 packages/resources/devicesettings
 
 # Private Keys
-rm -rf vendor/private-keys/keys
-git clone https://github.com/MurtazaKolachi/keys -b main vendor/private-keys/keys && \
+rm -rf vendor/lineage-priv/keys
+git clone https://github.com/MurtazaKolachi/keys -b main vendor/lineage-priv/keys && \
 
 # =============================
 #  Build Environment Setup
