@@ -17,7 +17,7 @@ rm -rf packages/resources/devicesettings
 
 # --- Init ROM repo ---
 #repo init --depth=1 -u https://github.com/DerpFest-AOSP/manifest.git -b 15.2 --git-lfs && \
-repo init --depth=1 -u https://github.com/DerpFest-AOSP/android_manifest.git -b 16 --git-lfs && \
+repo init --depth=1 -u https://github.com/DerpFest-AOSP/android_manifest.git -b 16.2 --git-lfs && \
 
 # --- Sync ROM ---
 #/opt/crave/resync.sh && \
