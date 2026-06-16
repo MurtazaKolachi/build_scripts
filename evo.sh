@@ -5,9 +5,6 @@
 #   For: Vanilla & Gapps
 # =============================
 
-mkdir ~/evo
-cd ~/evo
-
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests
@@ -17,7 +14,7 @@ rm -rf .repo/manifest.xml
 rm -rf packages/resources/devicesettings
 
 # --- Init ROM repo ---
-repo init --depth=1 -u https://github.com/Evolution-X/manifest.git -b bq2 --git-lfs && \
+repo init --depth=1 -u https://github.com/Evolution-X/manifest.git -b bka --git-lfs && \
 
 # --- Sync ROM ---
 #/opt/crave/resync.sh && \

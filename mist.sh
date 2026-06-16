@@ -5,9 +5,6 @@
 #  For: Vanilla & GAPPS
 # =============================
 
-mkdir ~/mist
-cd ~/mist
-
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests

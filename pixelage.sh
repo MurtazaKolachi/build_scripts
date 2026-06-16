@@ -4,9 +4,6 @@
 #   Project Pixelage Build Script
 # =================================
 
-mkdir ~/pixelage
-cd ~/pixelage
-
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests

@@ -4,9 +4,6 @@
 #  PixelOS Build Script
 # =============================
 
-mkdir ~/pixelos
-cd ~/pixelos
-
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests

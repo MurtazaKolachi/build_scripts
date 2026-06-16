@@ -5,9 +5,6 @@
 #   For: Vanilla & Gapps
 # =============================
 
-mkdir ~/infinity
-cd ~/infinity
-
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests

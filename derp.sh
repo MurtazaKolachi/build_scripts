@@ -4,9 +4,6 @@
 #    Derpfest Build Script
 # =============================
 
-mkdir ~/derp
-cd ~/derp
-
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests

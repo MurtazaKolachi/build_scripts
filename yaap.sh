@@ -4,9 +4,6 @@
 #  Project YAAP Build Script
 # =============================
 
-mkdir ~/yaap
-cd ~/yaap
-
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests
