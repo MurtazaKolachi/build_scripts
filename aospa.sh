@@ -4,9 +4,6 @@
 #   Project Pixelage Build Script
 # =================================
 
-mkdir ~/aospa
-cd ~/aospa
-
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests

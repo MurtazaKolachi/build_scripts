@@ -5,9 +5,6 @@
 #  For: Vanilla Build
 # =============================
 
-mkdir ~/vos
-cd ~/vos
-
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests

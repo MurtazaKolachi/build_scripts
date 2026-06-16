@@ -5,9 +5,6 @@
 #  For: Vanilla & Gapps & MicroG
 # =============================
 
-mkdir ~/rising
-cd ~/rising
-
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests

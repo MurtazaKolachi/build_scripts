@@ -5,9 +5,6 @@
 #   For: Gapps
 # =============================
 
-mkdir ~/clover
-cd ~/clover
-
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests

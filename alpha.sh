@@ -5,9 +5,6 @@
 #  For: Vanilla
 # =============================
 
-mkdir ~/alpha
-cd ~/alpha
-
 # --- Remove old local manifests ---
 rm -rf .repo/local_manifests
 rm -rf .repo/manifests
