@@ -17,8 +17,8 @@ rm -rf packages/resources/devicesettings
 repo init --depth=1 -u https://github.com/Lunaris-AOSP/android -b 16.2 --git-lfs && \
 
 # --- Sync ROM ---
-#/opt/crave/resync.sh && \
-repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune
+/opt/crave/resync.sh && \
+#repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune
 
 # --- Clone Device Tree ---
 rm -rf device/xiaomi
@@ -71,15 +71,15 @@ make installclean && \
 m bacon && \
 
 echo "===== Handling Vanilla Output ====="
-mv out/target/product/apollo out/target/product/vanilla && \
+mv out/target/product/apollo out/target/product/vanilla
 
 # --- Gapps Build ---
-echo "===== Setting up for Gapps Build ====="
-mv device/xiaomi/apollo/gapps.txt device/xiaomi/apollo/lineage_apollo.mk && \
-make installclean && \
-m bacon && \
+# echo "===== Setting up for Gapps Build ====="
+# mv device/xiaomi/apollo/gapps.txt device/xiaomi/apollo/lineage_apollo.mk && \
+# make installclean && \
+# m bacon && \
 
-echo "===== Handling Gapps Output ====="
-mv out/target/product/apollo out/target/product/gapps && \
+# echo "===== Handling Gapps Output ====="
+# mv out/target/product/apollo out/target/product/gapps && \
 
 echo "===== All builds completed successfully! ====="

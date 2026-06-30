@@ -16,8 +16,8 @@ rm -rf packages/resources/devicesettings
 repo init --depth=1 -u https://github.com/LumineDroid/platform_manifest -b bellflower --git-lfs && \
 
 # --- Sync ROM ---
-#/opt/crave/resync.sh && \
-repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
+/opt/crave/resync.sh && \
+#repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
 
 # --- Clone Device Tree ---
 rm -rf device/xiaomi

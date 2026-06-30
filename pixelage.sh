@@ -16,8 +16,8 @@ rm -rf packages/resources/devicesettings
 repo init --depth=1 -u https://github.com/ProjectPixelage/android_manifest.git -b 15 --git-lfs && \
 
 # --- Sync ROM ---
-#/opt/crave/resync.sh && \
-repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune
+/opt/crave/resync.sh && \
+#repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune
 
 # --- Clone Device Tree ---
 rm -rf device/xiaomi

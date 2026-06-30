@@ -69,18 +69,18 @@ echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
 axion apollo user va && \
 make installclean && \
-ax -br && \
+ax -br
 
-echo "===== Handling Vanilla Output ====="
-mv out/target/product/apollo out/target/product/vanilla && \
+#echo "===== Handling Vanilla Output ====="
+#mv out/target/product/apollo out/target/product/vanilla && \
 
 # --- Gapps Build ---
-echo "===== Setting up for Gapps Build ====="
-axion apollo user gms && \
-make installclean && \
-ax -br && \
+#echo "===== Setting up for Gapps Build ====="
+#axion apollo user gms && \
+#make installclean && \
+#ax -br && \
 
-echo "===== Handling Gapps Output ====="
-mv out/target/product/apollo out/target/product/gapps && \
+#echo "===== Handling Gapps Output ====="
+#mv out/target/product/apollo out/target/product/gapps && \
 
-echo "===== All builds completed successfully! ====="
+#echo "===== All builds completed successfully! ====="
