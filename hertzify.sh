@@ -20,7 +20,15 @@ set -o pipefail
 
 send_tg_msg() {
     local MESSAGE="$1"
-    curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage"         -d "chat_id=${TELEGRAM_CHAT_ID}"         -d "parse_mode=HTML"         -d "text=${MESSAGE}" > /dev/null
+    curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
+        -d "chat_id=${TELEGRAM_CHAT_ID}" \
+        -d "parse_mode=HTML" \
+        -d "text=${MESSAGE}" > /dev/null
+}
+
+# Pulls the last "[done/total]" style line ninja/soong prints, e.g. [18943/18943]
+get_build_stats() {
+    grep -oE '\[[0-9]+/[0-9]+\]' "$LOG_FILE" 2>/dev/null | tail -1 | tr -d '[]'
 }
 
 handle_error() {
@@ -35,6 +43,9 @@ handle_error() {
     touch "/tmp/build_failed.lock"
 
     echo "❌ CRITICAL: Build failed on line $FAILED_LINE!"
+
+    local BUILD_STATS
+    BUILD_STATS=$(get_build_stats)
 
     local LOG_LINK=""
     if [ -n "$LOG_FILE" ] && [ -f "$LOG_FILE" ]; then
@@ -52,8 +63,9 @@ handle_error() {
 
     local END_TIME=$(date +%s)
     local ELAPSED_MINUTES=$(((END_TIME - START_TIME) / 60))
-    local FAIL_MSG="BUILD FAILED ❌%0A├─ 📱 <b>Device:</b> ${DEVICE}%0A├─ 💿 <b>ROM:</b> ${ROM_NAME}%0A├─ ⏱️ <b>Time:</b> ${ELAPSED_MINUTES}m%0A├─ ⚠️ <b>Error:</b> Line ${FAILED_LINE}"
-    if [ -n "$LOG_LINK" ]; then FAIL_MSG="${FAIL_MSG}%0A└─ 📄 <a href="${LOG_LINK}">View Crash Log</a>"; fi
+    local FAIL_MSG="❌ <b>BUILD FAILED</b>%0A- <b>Device:</b> ${DEVICE}%0A- <b>ROM:</b> ${ROM_NAME}%0A- <b>Time:</b> ${ELAPSED_MINUTES}m%0A- <b>Error:</b> Line ${FAILED_LINE}"
+    if [ -n "$BUILD_STATS" ]; then FAIL_MSG="${FAIL_MSG}%0A- <b>Build Stats:</b> ${BUILD_STATS} actions"; fi
+    if [ -n "$LOG_LINK" ]; then FAIL_MSG="${FAIL_MSG}%0A- 📄 <a href=\"${LOG_LINK}\">View Crash Log</a>"; fi
     send_tg_msg "$FAIL_MSG"
     exit 1
 }
@@ -137,6 +149,8 @@ mka bacon
 
 echo "===== All builds completed successfully! ====="
 
+BUILD_STATS=$(get_build_stats)
+
 
 # ==========================================
 # ☁️ Process Artifacts & Upload
@@ -189,7 +203,9 @@ if [ ${#FILES_TO_UPLOAD[@]} -gt 0 ]; then
         if [ -n "$MASTER_LINK" ]; then
             END_TIME=$(date +%s)
             ELAPSED_MINUTES=$(((END_TIME - START_TIME) / 60))
-            SUCCESS_MSG="BUILD SUCCESSFUL 🚀%0A├─ 📱 <b>Device:</b> ${DEVICE}%0A├─ 💿 <b>ROM:</b> ${ROM_NAME}%0A├─ ⏱️ <b>Time:</b> ${ELAPSED_MINUTES}m%0A└─ 🔗 <a href="${MASTER_LINK}">Download on Gofile</a>"
+            SUCCESS_MSG="🚀 <b>BUILD SUCCESSFUL</b>%0A- <b>Device:</b> ${DEVICE}%0A- <b>ROM:</b> ${ROM_NAME}%0A- <b>Time:</b> ${ELAPSED_MINUTES}m"
+            if [ -n "$BUILD_STATS" ]; then SUCCESS_MSG="${SUCCESS_MSG}%0A- <b>Build Stats:</b> ${BUILD_STATS} actions"; fi
+            SUCCESS_MSG="${SUCCESS_MSG}%0A- 🔗 <a href=\"${MASTER_LINK}\">Download on Gofile</a>"
             send_tg_msg "$SUCCESS_MSG"
         fi
     fi
@@ -197,7 +213,9 @@ else
     echo "❌ No build artifacts found to upload."
     END_TIME=$(date +%s)
     ELAPSED_MINUTES=$(((END_TIME - START_TIME) / 60))
-    FAIL_MSG="BUILD FAILED ❌%0A├─ 📱 <b>Device:</b> ${DEVICE}%0A├─ 💿 <b>ROM:</b> ${ROM_NAME}%0A├─ ⏱️ <b>Time:</b> ${ELAPSED_MINUTES}m%0A└─ ⚠️ <b>Error:</b> No zip generated"
+    FAIL_MSG="❌ <b>BUILD FAILED</b>%0A- <b>Device:</b> ${DEVICE}%0A- <b>ROM:</b> ${ROM_NAME}%0A- <b>Time:</b> ${ELAPSED_MINUTES}m"
+    if [ -n "$BUILD_STATS" ]; then FAIL_MSG="${FAIL_MSG}%0A- <b>Build Stats:</b> ${BUILD_STATS} actions"; fi
+    FAIL_MSG="${FAIL_MSG}%0A- <b>Error:</b> No zip generated"
     send_tg_msg "$FAIL_MSG"
 fi
 
