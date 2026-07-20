@@ -63,6 +63,6 @@ echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
 lunch lineage_apollo-bp2a-user && \
 make installclean && \
-m bacon -j$(nproc --all)
+m bacon
 
 echo "===== All builds completed successfully! ====="

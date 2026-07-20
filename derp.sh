@@ -66,4 +66,4 @@ lunch lineage_apollo-bp4a-user && \
 make installclean && \
 mka derp
 
-echo "===== All builds completed successfully! ====="
+echo "===== Build completed successfully! ====="

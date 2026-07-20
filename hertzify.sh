@@ -70,4 +70,4 @@ lunch hertzify_apollo-bp4a-user && \
 make installclean && \
 mka bacon
 
-echo "===== All builds completed successfully! ====="
+echo "===== Build completed successfully! ====="

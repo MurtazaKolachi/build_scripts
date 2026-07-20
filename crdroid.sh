@@ -66,4 +66,4 @@ breakfast apollo user && \
 make installclean && \
 mka bacon
 
-echo "===== All builds completed successfully! ====="
+echo "===== Build completed successfully! ====="

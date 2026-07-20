@@ -1,5 +1,5 @@
 #!/bin/bash
-#
+
 # =============================
 #  LumineDroid Build Script
 # =============================
@@ -59,9 +59,9 @@ git clone https://github.com/MurtazaKolachi/keys -b main vendor/lineage-priv/key
 # =============================
 
 echo "===== Starting Vanilla Build ====="
-. build/envsetup.sh &&
-lunch lumine_apollo-bp4a-user &&
-make installclean &&
-mka bacon
+. build/envsetup.sh && \
+lunch lumine_apollo-bp4a-user && \
+make installclean && \
+mka bacon  && \
 
 echo "===== Build completed successfully! ====="

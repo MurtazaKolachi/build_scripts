@@ -68,6 +68,6 @@ echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
 lunch clover_apollo-bp4a-user && \
 make installclean && \
-mka clover && \
+mka clover
 
-echo "===== All builds completed successfully! ====="
+echo "===== Build completed successfully! ====="

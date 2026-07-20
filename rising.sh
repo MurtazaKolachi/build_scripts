@@ -98,5 +98,3 @@ echo "===== Handling Core Output ====="
 mv out/target/product/apollo out/target/product/core && \
 
 echo "===== All builds completed successfully! ====="
-
-nano device/xiaomi/apollo/BoardConfig.mk
