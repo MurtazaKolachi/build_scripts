@@ -14,7 +14,7 @@ rm -rf .repo/manifest.xml
 rm -rf packages/resources/devicesettings
 
 # --- Init ROM repo ---
-repo init --depth=1 -u https://github.com/Evolution-X/manifest.git -b bka --git-lfs && \
+repo init --depth=1 -u https://github.com/Evolution-X/manifest.git -b cnb --git-lfs && \
 
 # --- Sync ROM ---
 #/opt/crave/resync.sh && \
@@ -66,7 +66,7 @@ rm -rf out/target/product/gapps &&
 # --- Vanilla Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-lunch lineage_apollo-bp4a-user && \
+lunch lineage_apollo-cp2a-user && \
 make installclean && \
 m evolution && \
 

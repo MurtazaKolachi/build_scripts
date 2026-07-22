@@ -14,7 +14,7 @@ rm -rf .repo/manifest.xml
 rm -rf packages/resources/devicesettings
 
 # --- Init ROM repo ---
-repo init --depth=1 -u https://github.com/VoltageOS/manifest.git -b 16.2 --git-lfs && \
+repo init --depth=1 -u https://github.com/VoltageOS/manifest.git -b 17 --git-lfs && \
 
 # --- Sync ROM ---
 #/opt/crave/resync.sh && \
@@ -26,7 +26,7 @@ git clone https://github.com/MurtazaKolachi/device_xiaomi_apollo -b vos device/x
 
 # --- Clone Vendor Tree ---
 rm -rf vendor/xiaomi
-git clone https://github.com/MurtazaKolachi/vendor_xiaomi_apollo -b 16 vendor/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/vendor_xiaomi_apollo -b 17 vendor/xiaomi/apollo && \
 
 # --- Clone Kernel Tree ---
 rm -rf kernel/xiaomi

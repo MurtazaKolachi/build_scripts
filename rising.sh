@@ -14,7 +14,7 @@ rm -rf .repo/manifest.xml
 rm -rf packages/resources/devicesettings
 
 # --- Init ROM repo ---
-repo init --depth=1 -u https://github.com/RisingOS-Revived/android.git -b sixteen --git-lfs && \
+repo init --depth=1 -u https://github.com/RisingOS-Revived/android.git -b seventeen --git-lfs && \
 
 # --- Sync ROM ---
 #/opt/crave/resync.sh && \
@@ -26,7 +26,7 @@ git clone https://github.com/MurtazaKolachi/device_xiaomi_apollo -b rising devic
 
 # --- Clone Vendor Tree ---
 rm -rf vendor/xiaomi
-git clone https://github.com/MurtazaKolachi/vendor_xiaomi_apollo -b 16 vendor/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/vendor_xiaomi_apollo -b 17 vendor/xiaomi/apollo && \
 
 # --- Clone Kernel Tree ---
 rm -rf kernel/xiaomi
@@ -81,23 +81,5 @@ rise b && \
 
 echo "===== Handling Gapps Output ====="
 mv out/target/product/apollo out/target/product/gapps && \
-
-# --- MicroG Build ---
-echo "===== Setting up for MicroG Build ====="
-mv device/xiaomi/apollo/microg.txt device/xiaomi/apollo/lineage_apollo.mk && \
-make installclean && \
-rise b && \
-
-echo "===== Handling MicroG Output ====="
-mv out/target/product/apollo out/target/product/microg && \
-
-# --- CORE Build ---
-echo "===== Setting up for Core Build ====="
-mv device/xiaomi/apollo/core.txt device/xiaomi/apollo/lineage_apollo.mk && \
-make installclean && \
-rise b && \
-
-echo "===== Handling Core Output ====="
-mv out/target/product/apollo out/target/product/core && \
 
 echo "===== All builds completed successfully! ====="
