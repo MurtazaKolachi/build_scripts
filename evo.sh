@@ -247,7 +247,7 @@ rm -rf .repo/manifest.xml
 rm -rf packages/resources/devicesettings
 
 # --- Init ROM repo ---
-repo init --depth=1 -u https://github.com/Evolution-X/manifest.git -b bka --git-lfs && \
+repo init --depth=1 -u https://github.com/Evolution-X/manifest.git -b cnb --git-lfs && \
 
 # --- Sync ROM ---
 /opt/crave/resync.sh && \
@@ -303,7 +303,7 @@ start_build_tracker "$START_MSG_ID" "$ROM_NAME" "$DEVICE" "Vanilla Build"
 
 set +e
 . build/envsetup.sh && \
-lunch lineage_apollo-bp4a-user && \
+lunch lineage_apollo-cp2a-user && \
 make installclean && \
 m evolution
 BUILD_EXIT_CODE=$?
