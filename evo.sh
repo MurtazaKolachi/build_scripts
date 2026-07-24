@@ -247,7 +247,7 @@ rm -rf .repo/manifest.xml
 rm -rf packages/resources/devicesettings
 
 # --- Init ROM repo ---
-repo init --depth=1 -u https://github.com/Evolution-X/manifest.git -b cnb --git-lfs && \
+repo init --depth=1 -u https://github.com/Evolution-X/manifest.git -b bka --git-lfs && \
 
 # --- Sync ROM ---
 /opt/crave/resync.sh && \
@@ -256,10 +256,12 @@ repo init --depth=1 -u https://github.com/Evolution-X/manifest.git -b cnb --git-
 # --- Clone Device Tree ---
 rm -rf device/xiaomi
 git clone https://github.com/MurtazaKolachi/device_xiaomi_apollo -b evo device/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/device_xiaomi_camera -b main device/xiaomi/camera && \
 
 # --- Clone Vendor Tree ---
 rm -rf vendor/xiaomi
 git clone https://github.com/MurtazaKolachi/vendor_xiaomi_apollo -b 16 vendor/xiaomi/apollo && \
+git clone https://gitlab.com/MurtazaKolachi/vendor_xiaomi_camera -b main vendor/xiaomi/camera && \
 
 # --- Clone Kernel Tree ---
 rm -rf kernel/xiaomi
@@ -303,7 +305,7 @@ start_build_tracker "$START_MSG_ID" "$ROM_NAME" "$DEVICE" "Vanilla Build"
 
 set +e
 . build/envsetup.sh && \
-lunch lineage_apollo-cp2a-user && \
+lunch lineage_apollo-bp4a-user && \
 make installclean && \
 m evolution
 BUILD_EXIT_CODE=$?
