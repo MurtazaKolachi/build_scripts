@@ -360,19 +360,11 @@ if [ ${#FILES_TO_UPLOAD[@]} -gt 0 ]; then
             UPLOAD_RES=$(gofile_upload "$FILE_PATH" "$GUEST_TOKEN" "$FOLDER_ID")
 
             if [ -n "$UPLOAD_RES" ]; then
+                echo "✅ Successfully uploaded $(basename "$FILE_PATH") to GoFile"
                 if [ -z "$GUEST_TOKEN" ]; then
                     MASTER_LINK=$(echo "$UPLOAD_RES" | jq -r '.data.downloadPage' 2>/dev/null || true)
                     GUEST_TOKEN=$(echo "$UPLOAD_RES" | jq -r '.data.guestToken' 2>/dev/null || true)
                     FOLDER_ID=$(echo "$UPLOAD_RES" | jq -r '.data.parentFolder' 2>/dev/null || true)
-                fi
-                GO_LINK=$(echo "$UPLOAD_RES" | jq -r '.data.downloadPage' 2>/dev/null || true)
-                if [ -z "$GO_LINK" ] || [ "$GO_LINK" == "null" ]; then
-                    GO_LINK="$MASTER_LINK"
-                fi
-                if [ -n "$GO_LINK" ] && [ "$GO_LINK" != "null" ]; then
-                    echo "✅ Successfully uploaded $(basename "$FILE_PATH") to GoFile: ${GO_LINK}"
-                else
-                    echo "✅ Successfully uploaded $(basename "$FILE_PATH") to GoFile"
                 fi
             else
                 echo "⚠️ GoFile upload failed for $(basename "$FILE_PATH"), trying PixelDrain..."
