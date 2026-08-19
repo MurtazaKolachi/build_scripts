@@ -289,8 +289,7 @@ git clone https://github.com/MurtazaKolachi/keys -b main vendor/lineage-priv/key
 # git clone https://github.com/PocoF3Releases/vendor_qcom_wfd vendor/qcom/wfd && \
 
 # Remove output directories to be on safer side
-rm -rf out/target/product/vanilla &&
-rm -rf out/target/product/gapps &&
+rm -rf out/target/product &&
 
 # =============================
 #  Build: Vanilla & Gapps
