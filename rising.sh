@@ -75,6 +75,7 @@ mv out/target/product/apollo out/target/product/vanilla && \
 
 # --- Gapps Build ---
 echo "===== Setting up for Gapps Build ====="
+mv device/xiaomi/apollo/gapps.txt device/xiaomi/apollo/lineage_apollo.mk && \
 make installclean && \
 rise b && \
 
@@ -83,6 +84,7 @@ mv out/target/product/apollo out/target/product/gapps && \
 
 # --- MicroG Build ---
 echo "===== Setting up for MicroG Build ====="
+mv device/xiaomi/apollo/microg.txt device/xiaomi/apollo/lineage_apollo.mk && \
 make installclean && \
 rise b && \
 
@@ -91,6 +93,7 @@ mv out/target/product/apollo out/target/product/microg && \
 
 # --- CORE Build ---
 echo "===== Setting up for Core Build ====="
+mv device/xiaomi/apollo/core.txt device/xiaomi/apollo/lineage_apollo.mk && \
 make installclean && \
 rise b && \
 
