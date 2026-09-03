@@ -10,15 +10,24 @@ rm -rf .repo/local_manifests
 rm -rf .repo/manifests
 rm -rf .repo/manifest.xml
 
-# --- Remove Device Settings --- (Reason: It Will fail sync when we re run this script)
-rm -rf packages/resources/devicesettings
-
 # --- Init ROM repo ---
 repo init --depth=1 -u https://github.com/AlphaDroid-Project/manifest.git -b alpha-16.2 --git-lfs && \
 
+# --- Remove conflicting packages before sync ---
+mkdir -p .repo/local_manifests && \
+cat << 'EOF' > .repo/local_manifests/remove.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <remove-project name="LineageOS/android_packages_resources_devicesettings" />
+</manifest>
+EOF
+
 # --- Sync ROM ---
 #/opt/crave/resync.sh && \
-repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune --optimized-fetch --prune
+repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune && \
+
+# --- Fix broken pixelworks namespace import ---
+sed -i '/hardware\/pixelworks\/interfaces/d' hardware/qcom-caf/common/os_pickup_qssi.bp 2>/dev/null || true
 
 # --- Clone Device Tree ---
 rm -rf device/xiaomi
@@ -30,7 +39,7 @@ git clone https://github.com/MurtazaKolachi/vendor_xiaomi_apollo -b 16 vendor/xi
 
 # --- Clone Kernel Tree ---
 rm -rf kernel/xiaomi
-git clone --recurse-submodules https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 16 kernel/xiaomi/apollo && \
+git clone --recurse-submodules --shallow-submodules https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 16 kernel/xiaomi/apollo && \
 #git clone https://github.com/MurtazaKolachi/android_kernel_xiaomi_apollo -b staging kernel/xiaomi/apollo && \
 
 # --- Clone Hardware Tree ---
