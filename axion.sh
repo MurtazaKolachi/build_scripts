@@ -32,9 +32,8 @@ git clone https://gitlab.com/MurtazaKolachi/vendor_xiaomi_camera -b main vendor/
 
 # --- Clone Kernel Tree ---
 rm -rf kernel/xiaomi
-#git clone --recurse-submodules https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 16 kernel/xiaomi/apollo && \
 git clone --recurse-submodules https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 16 kernel/xiaomi/apollo && \
-##git clone https://github.com/MurtazaKolachi/android_kernel_xiaomi_apollo -b staging kernel/xiaomi/apollo && \
+#git clone https://github.com/MurtazaKolachi/android_kernel_xiaomi_apollo -b staging kernel/xiaomi/apollo && \
 
 # --- Clone Hardware Tree ---
 rm -rf hardware/xiaomi
