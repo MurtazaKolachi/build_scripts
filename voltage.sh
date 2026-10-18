@@ -30,7 +30,7 @@ git clone https://github.com/MurtazaKolachi/vendor_xiaomi_apollo -b 17 vendor/xi
 
 # --- Clone Kernel Tree ---
 rm -rf kernel/xiaomi
-git clone --recurse-submodules https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 16 kernel/xiaomi/apollo && \
+git clone --recurse-submodules https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 17 kernel/xiaomi/apollo && \
 #git clone https://github.com/MurtazaKolachi/android_kernel_xiaomi_apollo -b staging kernel/xiaomi/apollo && \
 #git clone https://github.com/MurtazaKolachi/kernel_xiaomi_apollo_magictime -b magictime-new kernel/xiaomi/apollo && \
 
@@ -42,7 +42,7 @@ git clone https://github.com/LineageOS/android_hardware_xiaomi -b lineage-23.2 h
 # --- Dolby ---
 rm -rf hardware/dolby
 #git clone https://github.com/Mi-Apollo/hardware_dolby -b moto-1.0 hardware/dolby && \
-git clone https://github.com/Mi-Apollo/lunaris2_hardware_dolby -b 16 hardware/dolby && \
+git clone https://github.com/Mi-Apollo/lunaris2_hardware_dolby -b 17 hardware/dolby && \
 
 # --- Device Settings ---
 rm -rf packages/resources/devicesettings
