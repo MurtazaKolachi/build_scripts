@@ -23,10 +23,12 @@ repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags --optimiz
 # --- Clone Device Tree ---
 rm -rf device/xiaomi
 git clone https://github.com/MurtazaKolachi/device_xiaomi_apollo -b axion device/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/device_xiaomi_camera -b main device/xiaomi/camera && \
 
 # --- Clone Vendor Tree ---
 rm -rf vendor/xiaomi
 git clone https://github.com/MurtazaKolachi/vendor_xiaomi_apollo -b 16 vendor/xiaomi/apollo && \
+git clone https://gitlab.com/MurtazaKolachi/vendor_xiaomi_camera -b main vendor/xiaomi/camera && \
 
 # --- Clone Kernel Tree ---
 rm -rf kernel/xiaomi
