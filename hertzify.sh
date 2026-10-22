@@ -68,7 +68,7 @@ rm -rf out/target/product/gapps &&
 # --- GAPPS Build ---
 echo "===== Starting Vanilla Build ====="
 . build/envsetup.sh && \
-lunch hertzify_apollo-bp4a-user && \
+lunch hertzify_apollo-cp2a-user && \
 make installclean && \
 mka bacon
 
