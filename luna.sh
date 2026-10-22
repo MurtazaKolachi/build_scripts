@@ -23,14 +23,16 @@ repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags --optimiz
 # --- Clone Device Tree ---
 rm -rf device/xiaomi
 git clone https://github.com/MurtazaKolachi/device_xiaomi_apollo -b luna device/xiaomi/apollo && \
+git clone https://github.com/MurtazaKolachi/device_xiaomi_camera -b main device/xiaomi/camera && \
 
 # --- Clone Vendor Tree ---
 rm -rf vendor/xiaomi
 git clone https://github.com/MurtazaKolachi/vendor_xiaomi_apollo -b 16 vendor/xiaomi/apollo && \
+git clone https://gitlab.com/MurtazaKolachi/vendor_xiaomi_camera -b main vendor/xiaomi/camera && \
 
 # --- Clone Kernel Tree ---
 rm -rf kernel/xiaomi
-git clone --recurse-submodules https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 16 kernel/xiaomi/apollo && \
+git clone --recurse-submodules https://github.com/MurtazaKolachi/kernel_xiaomi_apollo -b 17 kernel/xiaomi/apollo && \
 #git clone https://github.com/MurtazaKolachi/android_kernel_xiaomi_apollo -b staging kernel/xiaomi/apollo && \
 
 # --- Clone Hardware Tree ---
@@ -41,7 +43,7 @@ git clone https://github.com/LineageOS/android_hardware_xiaomi -b lineage-23.2 h
 # --- Dolby ---
 rm -rf hardware/dolby
 # git clone https://github.com/Mi-Apollo/hardware_dolby -b moto-1.0 hardware/dolby && \
-git clone https://github.com/Mi-Apollo/lunaris2_hardware_dolby -b 16 hardware/dolby && \
+git clone https://github.com/Mi-Apollo/lunaris2_hardware_dolby -b 17 hardware/dolby && \
 
 # --- Device Settings ---
 rm -rf packages/resources/devicesettings
